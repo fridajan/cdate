@@ -4,23 +4,29 @@
 #include <stdexcept>
 
 class Date {
+
+  private:
+    int m_year;
+    int m_month;
+    int m_day;
+    int m_daysPerWeek;
+
   public:
-  	//Blalalalala
     //Date() = 0;
     //Date(int year, int month, int day) = 0;
     //copy-contructor
     //copy-assignment
     //destructor
 
-    virtual int year() const =0;
+    virtual int year() const { return m_year; };
 
-    virtual int month() const =0;
+    virtual int month() const { return m_month; };
 
-    virtual int day() const =0;
+    virtual int day() const  { return m_day; };
 
     virtual int week_day() const =0;
 
-    virtual int days_per_week() const =0;
+    virtual int days_per_week() const { return m_daysPerWeek; };
   
     virtual int days_this_month() const =0;
   
@@ -60,8 +66,6 @@ class Date {
 
 	virtual std::ostream & operator<<(const Date &) =0;
 
-/*private:
-	int year;*/
 };
 
 #endif /* DATE_H_ */
