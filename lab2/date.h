@@ -1,3 +1,6 @@
+#ifndef DATE_H_
+#define DATE_H_
+
 #include <stdexcept>
 
 class Date {
@@ -60,3 +63,5 @@ class Date {
 /*private:
 	int year;*/
 };
+
+#endif /* DATE_H_ */
