@@ -5,7 +5,7 @@
 
 class Date {
 
-  private:
+  protected:
     int m_year;
     int m_month;
     int m_day;
