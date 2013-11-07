@@ -2,9 +2,13 @@
 #include "kattistime.h"
 #include "date.h"
 
-class Julian : Date {
-	time_t currentTime;
-	public:
-		Julian();
-		int year() const;
-};
+namespace lab2
+{
+	class Julian : public Date {
+		int m_year;
+		public:
+			Julian();
+			virtual int year();
+			virtual ~Julian(){};
+	};
+}
