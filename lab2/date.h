@@ -1,58 +1,34 @@
 #ifndef DATE_H_
 #define DATE_H_
 
-#include "kattistime.h"
 #include <stdexcept>
 
 namespace lab2 
 {
   class Date {
 
-    protected:
-      int m_year;
-      int m_month;
-      int m_day;
-      int m_daysPerWeek;
-
     public:
-      //Date() = 0;
-      //Date(int year, int month, int day) = 0;
+      //Date() 
+      //Date(int year, int month, int day)
       //copy-contructor
       //copy-assignment
       //destructor
-
-      Date()
-      {
-        // För att få nuvarande tid
-        time_t mytime;
-        time(&mytime);
-
-        // För att få ut datum lokalt 
-        struct tm *t = gmtime(&mytime);
-        m_year  = t->tm_year + 1900;
-        m_month = t->tm_mon + 1;      // månaderna och dagarna
-        m_day   = t->tm_mday;         // indexerade från ETT
-      }
-
-      Date(int year, int month, int day) : m_year(year), m_month(month), m_day(day)
-      {
-      }
 
       ~Date()
       {
       }
 
-      virtual int year() const { return m_year; }
+      /*virtual int year() const =0;
 
-      virtual int month() const { return m_month; }
+      virtual int month() const =0;
 
-      virtual int day() const  { return m_day; }
+      virtual int day() const =0;
 
-      //virtual int week_day() const =0;
+      virtual int week_day() const =0;
 
-      virtual int days_per_week() const { return m_daysPerWeek; }
+      virtual int days_per_week() const =0;
     
-      /*virtual int days_this_month() const =0;
+      virtual int days_this_month() const =0;
     
     	virtual int months_per_year() const =0;
 
