@@ -20,7 +20,8 @@ namespace lab2
 											 {4, 10, 21, 27, 32, 38, 49, 55, 60, 66, 77, 83, 88, 94},
 											 {5, 11, 16, 22, 33, 39, 44, 50, 61, 67, 72, 78, 89, 95} };
 	//Century mod 7
-	const int Gregorian::m_centuriesTable[] = {4, 3, 2, 1, 0, 6, 5};
+	//const int Gregorian::m_centuriesTable[] = {4, 3, 2, 1, 0, 6, 5};
+	const int Gregorian::m_centuriesTable[] = {0, 5, 3, 1, 0};
 
 
 
@@ -53,35 +54,6 @@ namespace lab2
 
 	int Gregorian::week_day() const
 	{
-		//TODO
-		//d + m + y + (y/4) + x mod 7
-
-		/*int d = day();
-		int m = m_monthTable[month() - 1];
-		if(isLeapYear() && (month() == 1 || month() == 2))
-		{
-			m -= 1;
-		}
-		int yMod100 = year() % 100;
-		int y;
-		for(int i=0; i<7; ++i)
-		{
-			for(int j=0; j<15; ++j)
-			{
-				if(m_yearTable[i][j] == yMod100) {
-					y = i;
-					break;
-				}
-			}
-		}
-		int cMod7 = (year() / 100) % 7;
-		int c = m_centuriesTable[cMod7];
-
-		int weekDay = d + m + y + (y / 4) + (c % 7);
-		if(weekDay == 0) {
-			return 7;
-		}*/
-
 		int d = day();
 		int m = m_monthTable[month() - 1];
 		if(isLeapYear() && (month() == 1 || month() == 2))
@@ -89,7 +61,7 @@ namespace lab2
 			m -= 1;
 		}
 		int y = (year() % 100) % 28;
-		int c = m_centuriesTable[(year() / 100) % 7];
+		int c = m_centuriesTable[(year() / 100) % 7 -1];
 
 		int weekDay = (d + m + y + (y / 4) + c) % 7;
 		if(weekDay == 0) {
@@ -141,17 +113,17 @@ int main() {
 	lab2::Gregorian g2(2012, 2, 1);
 	std::cout << g2.year() << "-" << g2.month() << "-" << g2.day() << std::endl;
 	std::cout << "days this month: " << g2.days_this_month() << std::endl;
-	std::cout << "week day: " << g1.week_day() << std::endl;
+	std::cout << "week day: " << g2.week_day() << std::endl;
 
 	lab2::Gregorian g3(2000, 2, 13);
 	std::cout << g3.year() << "-" << g3.month() << "-" << g3.day() << std::endl;
 	std::cout << "days this month: " << g3.days_this_month() << std::endl;
-	std::cout << "week day: " << g1.week_day() << std::endl;
+	std::cout << "week day: " << g3.week_day() << std::endl;
 
 	lab2::Gregorian g4(1900, 2, 13);
 	std::cout << g4.year() << "-" << g4.month() << "-" << g4.day() << std::endl;
 	std::cout << "days this month: " << g4.days_this_month() << std::endl;
-	std::cout << "week day: " << g1.week_day() << std::endl;
+	std::cout << "week day: " << g4.week_day() << std::endl;
 
 
 	return 0;

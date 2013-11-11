@@ -31,10 +31,6 @@ namespace lab2
 
       virtual int year() const = 0;
 
-      virtual int month() const = 0;
-
-      virtual int day() const = 0;
-
       virtual int month() const =0;
 
       virtual int day() const =0;
@@ -43,7 +39,7 @@ namespace lab2
 
       virtual int days_per_week() const =0;
     
-      virtual int days_this_month() const =0;
+      /*virtual int days_this_month() const =0;
     
     	virtual int months_per_year() const =0;
 
