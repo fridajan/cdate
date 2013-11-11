@@ -14,11 +14,11 @@ namespace lab2
       //copy-assignment
       //destructor
 
-      ~Date()
-      {
+      virtual ~Date() 
+      { 
       }
 
-      /*virtual int year() const =0;
+      virtual int year() const =0;
 
       virtual int month() const =0;
 
@@ -32,7 +32,7 @@ namespace lab2
     
     	virtual int months_per_year() const =0;
 
-    	virtual std::string week_day_name() const =0;
+    	/*virtual std::string week_day_name() const =0;
 
     	virtual std::string month_name() const =0;
 
