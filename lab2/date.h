@@ -6,19 +6,34 @@
 namespace lab2 
 {
   class Date {
+  protected:
+    //double current_time;
 
     public:
-      //Date() 
-      //Date(int year, int month, int day)
+      double current_time;
+      //Date() = 0;
+      //Date(int year, int month, int day) = 0;
+
+    public:
+      //Date()       //Date(int year, int month, int day)
       //copy-contructor
       //copy-assignment
       //destructor
+      //Date(){};
+
+      /*Date(int year, int month, int day) : m_year(year), m_month(month), m_day(day)
+      {
+      }*/
 
       virtual ~Date() 
       { 
       }
 
-      virtual int year() const =0;
+      virtual int year() const = 0;
+
+      virtual int month() const = 0;
+
+      virtual int day() const = 0;
 
       virtual int month() const =0;
 
@@ -32,7 +47,7 @@ namespace lab2
     
     	virtual int months_per_year() const =0;
 
-    	/*virtual std::string week_day_name() const =0;
+    	virtual std::string week_day_name() const =0;
 
     	virtual std::string month_name() const =0;
 
