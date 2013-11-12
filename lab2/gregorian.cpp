@@ -15,6 +15,9 @@ namespace lab2
 	//Century mod 7
 	const int Gregorian::m_centuriesTable[] = {0, 5, 3, 1, 0};
 
+	const std::string Gregorian::m_weekDaysName[] = { "Monday", "Tuesday", "Wednesday", 
+											"Thursday", "Friday", "Saturday", 
+											"Sunday"};
 
 
 	Gregorian::Gregorian()
@@ -80,10 +83,10 @@ namespace lab2
 		return 12;
 	}
 
-
     std::string Gregorian::week_day_name() const
     {
-
+    	int weekDay = week_day();
+    	return m_weekDaysName[weekDay-1];
     }
 
 	std::string Gregorian::month_name() const
@@ -113,7 +116,7 @@ int main() {
 
 	std::cout << g1.year() << "-" << g1.month() << "-" << g1.day() << std::endl;
 	std::cout << "days this month: " << g1.days_this_month() << std::endl;
-	std::cout << "week day: " << g1.week_day() << std::endl;
+	std::cout << "week day: " << g1.week_day() << g1.week_day_name() << std::endl;
 
 	lab2::Gregorian g2(2012, 2, 1);
 	std::cout << g2.year() << "-" << g2.month() << "-" << g2.day() << std::endl;
