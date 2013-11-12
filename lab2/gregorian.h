@@ -28,6 +28,39 @@ namespace lab2
 
 		int months_per_year() const;
 
+    	std::string week_day_name() const;
+
+    	std::string month_name() const;
+
+    	Date& operator++() { return *this; };
+
+    	Date& operator--() { return *this; };
+
+    	Date& operator+=(int n) { return *this; };
+
+    	Date& operator-=(int n) { return *this; };
+
+    	void add_year(int n = 1) {  };
+
+    	void add_month(int n = 1) {  };
+
+    	bool operator==(const Date& d) const { return true; };
+
+    	bool operator!=(const Date& d) const { return true; };
+
+    	bool operator<(const Date& d) const { return true; };
+
+    	bool operator<=(const Date& d) const { return true; };
+
+    	bool operator>(const Date& d) const { return true; };
+
+    	bool operator>=(const Date& d) const { return true; };
+
+    	int operator-(const Date& d) const { return 0; };
+
+      	int mod_julian_day() const { return 0; };
+
+      	std::ostream & operator<<(const Date &) { };
 
 
 	private:

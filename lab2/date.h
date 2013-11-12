@@ -39,7 +39,7 @@ namespace lab2
 
       virtual int days_per_week() const =0;
     
-      /*virtual int days_this_month() const =0;
+      virtual int days_this_month() const =0;
     
     	virtual int months_per_year() const =0;
 
@@ -75,7 +75,7 @@ namespace lab2
 
       virtual int mod_julian_day() const =0;
 
-      virtual std::ostream & operator<<(const Date &) =0;*/
+      virtual std::ostream & operator<<(const Date &) =0;
 
   };
 }

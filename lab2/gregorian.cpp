@@ -11,16 +11,8 @@ namespace lab2
 
 	const int Gregorian::m_monthTable[] = { 0, 3, 3, 6, 1, 4, 
 											6, 2, 5, 0, 3, 5 };
-	//The year modulo 100
-	const int Gregorian::m_yearTable[][15] = { {0, 6, 17, 23, 28, 34, 45, 51, 56, 62, 73, 79, 84, 90},
-											 {1, 7, 12, 18, 29, 35, 40, 46, 57, 63, 68, 74, 85, 91, 96},
-											 {2, 13, 19, 24, 30, 41, 47, 52, 58, 69, 75, 80, 86, 97},
-											 {3, 8, 14, 25, 31, 36, 42, 53, 59, 64, 70, 81, 87, 92, 98},
-											 {9, 15, 20, 26, 37, 43, 48, 54, 65, 71, 76, 82, 93, 99},
-											 {4, 10, 21, 27, 32, 38, 49, 55, 60, 66, 77, 83, 88, 94},
-											 {5, 11, 16, 22, 33, 39, 44, 50, 61, 67, 72, 78, 89, 95} };
+	
 	//Century mod 7
-	//const int Gregorian::m_centuriesTable[] = {4, 3, 2, 1, 0, 6, 5};
 	const int Gregorian::m_centuriesTable[] = {0, 5, 3, 1, 0};
 
 
@@ -87,6 +79,19 @@ namespace lab2
 	{
 		return 12;
 	}
+
+
+    std::string Gregorian::week_day_name() const
+    {
+
+    }
+
+	std::string Gregorian::month_name() const
+	{
+
+    }
+
+
 
 	bool Gregorian::isLeapYear() const
 	{
