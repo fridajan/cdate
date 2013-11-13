@@ -75,6 +75,7 @@ namespace lab2
 		static const int m_monthTable[];
 		static const int m_centuriesTable[];
 		static const std::string m_weekDaysName[];
+		static const std::string m_monthsName[];
 		
 	};
 }

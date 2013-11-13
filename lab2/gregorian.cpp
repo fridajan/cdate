@@ -8,16 +8,17 @@ namespace lab2
 
 	const int Gregorian::m_daysPerMonth[] = { 31, 28, 31, 30, 31, 30, 
 											  31, 31, 30, 31, 30, 31 };
-
 	const int Gregorian::m_monthTable[] = { 0, 3, 3, 6, 1, 4, 
 											6, 2, 5, 0, 3, 5 };
-	
-	//Century mod 7
+	//Century, starting with 1600
 	const int Gregorian::m_centuriesTable[] = {0, 5, 3, 1, 0};
 
 	const std::string Gregorian::m_weekDaysName[] = { "Monday", "Tuesday", "Wednesday", 
-											"Thursday", "Friday", "Saturday", 
-											"Sunday"};
+											"Thursday", "Friday", "Saturday", "Sunday"};
+	const std::string Gregorian::m_monthsName[] = { "January", "February", "March",
+													"April", "May", "June", "July",
+													"August", "September", "October",
+													"November", "December" };
 
 
 	Gregorian::Gregorian()
@@ -56,7 +57,7 @@ namespace lab2
 			m -= 1;
 		}
 		int y = (year() % 100) % 28;
-		int c = m_centuriesTable[(year() / 100) % 7 -1];
+		int c = m_centuriesTable[(year() / 100) - 16];
 
 		int weekDay = (d + m + y + (y / 4) + c) % 7;
 		if(weekDay == 0) {
@@ -85,13 +86,12 @@ namespace lab2
 
     std::string Gregorian::week_day_name() const
     {
-    	int weekDay = week_day();
-    	return m_weekDaysName[weekDay-1];
+    	return m_weekDaysName[week_day()-1];
     }
 
 	std::string Gregorian::month_name() const
 	{
-
+		return m_monthsName[month() - 1];
     }
 
 
@@ -115,23 +115,26 @@ int main() {
 	lab2::Gregorian g1;
 
 	std::cout << g1.year() << "-" << g1.month() << "-" << g1.day() << std::endl;
-	std::cout << "days this month: " << g1.days_this_month() << std::endl;
-	std::cout << "week day: " << g1.week_day() << g1.week_day_name() << std::endl;
+	std::cout << "month name: " << g1.month_name() << std::endl;
+	std::cout << "week day: " << g1.week_day_name() << std::endl;
+	std::cout << std::endl;
 
 	lab2::Gregorian g2(2012, 2, 1);
 	std::cout << g2.year() << "-" << g2.month() << "-" << g2.day() << std::endl;
-	std::cout << "days this month: " << g2.days_this_month() << std::endl;
-	std::cout << "week day: " << g2.week_day() << std::endl;
+	std::cout << "month name: " << g2.month_name() << std::endl;
+	std::cout << "week day: " << g2.week_day_name() << std::endl;
+	std::cout << std::endl;
 
 	lab2::Gregorian g3(2000, 2, 13);
 	std::cout << g3.year() << "-" << g3.month() << "-" << g3.day() << std::endl;
-	std::cout << "days this month: " << g3.days_this_month() << std::endl;
-	std::cout << "week day: " << g3.week_day() << std::endl;
+	std::cout << "month name: " << g3.month_name() << std::endl;
+	std::cout << "week day: " << g3.week_day_name() << std::endl;
+	std::cout << std::endl;
 
 	lab2::Gregorian g4(1900, 2, 13);
 	std::cout << g4.year() << "-" << g4.month() << "-" << g4.day() << std::endl;
-	std::cout << "days this month: " << g4.days_this_month() << std::endl;
-	std::cout << "week day: " << g4.week_day() << std::endl;
+	std::cout << "month name: " << g4.month_name() << std::endl;
+	std::cout << "week day: " << g4.week_day_name() << std::endl;
 
 
 	return 0;
