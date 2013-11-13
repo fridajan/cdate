@@ -32,17 +32,17 @@ namespace lab2
 
     	std::string month_name() const;
 
-    	Date& operator++() { return *this; };
+    	Date& operator++();
 
-    	Date& operator--() { return *this; };
+    	Date& operator--();
 
-    	Date& operator+=(int n) { return *this; };
+    	Date& operator+=(int n);
 
-    	Date& operator-=(int n) { return *this; };
+    	Date& operator-=(int n);
 
-    	void add_year(int n = 1) {  };
+    	void add_year(int n = 1);
 
-    	void add_month(int n = 1) {  };
+    	void add_month(int n = 1);
 
     	bool operator==(const Date& d) const { return true; };
 
@@ -65,7 +65,6 @@ namespace lab2
 
 	private:
 		bool isLeapYear() const;
-
 
 		int m_year;
 		int m_month;
