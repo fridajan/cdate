@@ -1,5 +1,4 @@
 #include "kattistime.h"
-#include "date.h"
 #include "julian.h"
 #include <math.h>       /* floor */
 #include <string>
@@ -43,31 +42,33 @@ namespace lab2{
 	}
 
 	Julian & Julian::operator= (const Date & date){
-	   	this->fromJDNtoJulianDate(date.current_time);
-
+	   	this->fromJDNtoJulianDate(date.current_time); //Calculate from JDN
 		return *this;
 	}
-	int Julian::year() const{ 
+	int Julian::year(){ 
+		this->fromJDNtoJulianDate(current_time); //Calculate from JDN
 		return j_year;
 	};
 
-	int Julian::month() const{ 
+	int Julian::month(){ 
+		this->fromJDNtoJulianDate(current_time); //Calculate from JDN
 		return j_month;
 	};
 
-	int Julian::day() const{ 
+	int Julian::day() { 
+		this->fromJDNtoJulianDate(current_time); //Calculate from JDN
 		return j_day;
 	};
 
-	std::string Julian::week_day() const{
+	int Julian::week_day() const{
+		return (int)current_time % 7;
+	};
+
+	std::string Julian::week_day_name() const{
 		std::string weekdays[7] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 		int week_day = (int)current_time % 7;
 		return weekdays[week_day];
 	};
-
- 	int Julian::days_per_week() const{
- 		return 7;
- 	};
 
 	int Julian::days_this_month() const{
 		int daysPerMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -78,29 +79,12 @@ namespace lab2{
 		return daysPerMonth[index];
 	};
 
-	int Julian::months_per_year() const{
-		return 12;
-	};
-
 	std::string Julian::month_name() const{
 		int index = j_month - 1;
 		std::string months[12] = {"January", "February", "Mars", "April", "May", "June", "July", "August", "September", "October", "Movember", "December"};
 		return months[index];
 	};
 
-	//TODO Friend function?
-	/*Julian& operator++(){
-		j_day++;
-
-		int a = (14-month)/12;
-		int y_tmp = year+4800-a;
-		int m_tmp = month + 12*a -3;
-
-		//Julian time to JDN
-		current_time = j_day + (153 * m_tmp + 2)/5 + 365 * y_tmp + (y_tmp/4)-32083;
-
-		return *this;
-	}*/
 	void Julian::fromJDNtoJulianDate(long JDN){	
 	    double z, a, b, c, d, e;
 
