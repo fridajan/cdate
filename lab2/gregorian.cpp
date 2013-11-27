@@ -1,7 +1,9 @@
 #include "gregorian.h"
+#include "GregAndJulianDate.h" 
 #include "kattistime.h"
 #include <stdexcept>
 #include <iostream>
+#include <sstream>
 
 namespace lab2 
 {
@@ -30,27 +32,55 @@ namespace lab2
 
 	    // För att få ut datum lokalt 
 	    struct tm *t = gmtime(&mytime);
-	    m_year  = t->tm_year + 1900;
-	    m_month = t->tm_mon + 1;      // månaderna och dagarna
-	    m_day   = t->tm_mday;         // indexerade från ETT
+	    int year  = t->tm_year + 1900;
+	    int month = t->tm_mon + 1;      // månaderna och dagarna
+	    int day   = t->tm_mday;         // indexerade från ETT
+
+	    current_time = toJDN(year, month, day);
+
 	}
 
 	Gregorian::Gregorian(int year, int month, int day)
 	{
-	    m_year = year;
-	    m_month = month;
-	    m_day = day;
+	   	current_time = toJDN(year, month, day);
 	}
 
 	Gregorian::~Gregorian()
 	{
 	}
 
+	int Gregorian::year() const 
+	{ 
+		int year;
+		int month;
+		int day;
+		toDate(year, month, day);
+		return year; 
+	}
+
+	int Gregorian::month() const 
+	{ 
+		int year;
+		int month;
+		int day;
+		toDate(year, month, day);	
+		return month; 
+	}
+
+	int Gregorian::day() const 
+	{ 
+		int year;
+		int month;
+		int day;
+		toDate(year, month, day);
+		return day; 
+	}
+
 	int Gregorian::week_day() const
 	{
 		int d = day();
 		int m = m_monthTable[month() - 1];
-		if(isLeapYear() && (month() == 1 || month() == 2))
+		if(isLeapYear(year()) && (month() == 1 || month() == 2))
 		{
 			m -= 1;
 		}
@@ -64,22 +94,9 @@ namespace lab2
 		return weekDay;
 	}
 
-	int Gregorian::days_per_week() const
-	{
-		return 7;
-	}
-
 	int Gregorian::days_this_month() const
 	{
-		if(month() == 2 && isLeapYear()) {
-			return 29;
-		}
-		return m_daysPerMonth[month()-1];
-	}
-
-	int Gregorian::months_per_year() const
-	{
-		return 12;
+		return daysAMonth(month(), year());
 	}
 
     std::string Gregorian::week_day_name() const
@@ -92,129 +109,125 @@ namespace lab2
 		return m_monthsName[month() - 1];
     }
 
-
-	Date& Gregorian::operator++() 
-	{ 
-		if(day() < days_this_month()) {
-			m_day++;
-		} else {
-			if(month() == months_per_year()) {
-				m_year++;
-				m_month = 1;
-			} else {
-				m_month++;
-			}
-			m_day = 1;
-		}
-		return *this; 
-	}
-
-	Date& Gregorian::operator--() 
-	{ 
-		if(day() > 1) {
-			m_day--;
-		} else {
-			if(month() == 1) {
-				m_year--;
-				m_month = months_per_year();
-			} else {
-				m_month--;
-			}
-			m_day = days_this_month();
-		}
-		return *this; 
-	}
-
-	/*
-	n = 20
-	day 30
-	days month 31
-	
-	*/
-	Date& Gregorian::operator+=(int n) 
-	{
-		/*int newDay = n;
-		int newMonth = 0;
-		int newYear = 0;
-		if(day() + n > days_this_month()) {
-			day = n - (days_this_month() - day());
-			newMonth = month + 1;
-		}*/
-		return *this; 
-	}
-
-	Date& Gregorian::operator-=(int n) 
-	{ 
-		m_day -= n;
-		return *this; 
-	}
-
-
-	void Gregorian::add_year(int n = 1) 
+	void Gregorian::add_year(int n) 
 	{  
-		m_year += n;
+		int y = year() + n;
+		int m = month();
+		int d = day();
+		if(m == 2 && d == 29) {
+			if(!isLeapYear(y)) {
+				d = 28;
+			}
+		}
+		current_time = toJDN(y, m, d);
 	}
 
-	void Gregorian::add_month(int n = 1) 
-	{  
-		//TODO
-		int newMonth = month() + n;
-		int newYear = 0;
-		if(newMonth > months_per_year()) {
-			newMonth = newMonth % months_per_year();
-			newYear = m_year + newMonth / months_per_year();
+	void Gregorian::add_month(int n) 
+	{   
+		int y = year();
+		int m = month() + 1;
+		int d = day();
+		if(m > months_per_year()) {
+			m = 1;
+			y++;
 		}
-		if(day() > m_daysPerMonth[newMonth-1]) {
-			std::cout << "error" << std::endl;
+		if(d > daysAMonth(m, y)) {
+			d = d - daysAMonth(m-1, y) + 30;
+			if(d > daysAMonth(m, y)) {
+				d -= daysAMonth(m, y);
+				m++;
+			}
+		}
+		if(n == 1) {
+			current_time = toJDN(y, m, d);
 		} else {
-			m_month = newMonth;
-			m_year = newYear;
+			current_time = toJDN(y, m, d);
+			add_month(n-1);
 		}
 	}
 
-
-	bool Gregorian::isLeapYear() const
+	std::ostream & operator<<(std::ostream & os, const Date & date)
 	{
-		if( (year() % 4 == 0 && year() % 100 != 0) ||
-			(year() % 100 == 0 && year() % 400 == 0) )
+		int y = date.year();
+		int m = date.month();
+		int d = date.day();
+
+		std::ostringstream oss;
+		oss << y << "-";
+		if(m < 10) {
+			oss << "0" << m << "-";
+		} else {
+			oss << m << "-";
+		}
+
+		if(d < 10) {
+			oss << "0" << d;
+		} else {
+			oss << d;
+		}
+		std::string str = oss.str();
+		os << str;
+		return os;
+	}
+
+
+	bool Gregorian::isLeapYear(int year) const
+	{
+		if( (year % 4 == 0 && year % 100 != 0) ||
+			(year % 100 == 0 && year % 400 == 0) )
 		{
 			return true;
 		}
 		return false;
 	}
 
+	int Gregorian::daysAMonth(int month, int year) const
+	{
+		if(month == 2 && isLeapYear(year)) {
+			return 29;
+		}
+		return m_daysPerMonth[month-1];
+	}
+
+	double Gregorian::toJDN(int year, int month, int day) const
+	{
+
+    	int a = (14-month)/12;
+		int y = year+4800-a;
+		int m = month + 12*a -3;
+
+		//Gregorian time to JDN
+		double jdn = day + (153*m+2)/5 + 365*y + (y/4)-(y/100)+(y/400)-32045;
+		return jdn;
+	}
+
+	double Gregorian::toDate(int &year, int &month, int &day) const
+	{
+		int Q = current_time + 0.5;
+		int Z = Q;
+		int W = (Z - 1867216.25) / 36524.25;
+		int X = W / 4;
+		int A = Z + 1 + W - X;
+		int B = A + 1524;
+		int C = (B - 122.1) / 365.25;
+		int D = 365.25 * C;
+		int E = (B - D) / 30.6001;
+		int F = 30.6001 * E;
+
+		day = B - D - F + (Q - Z);
+		if(E > 13) {
+			month = E-13;
+		} else {
+			month = E -1;
+		}
+		if(month < 3) {
+			year = C - 4715;
+		} else {
+			year = C - 4716;
+		}
+	}
 
 
 
 }	// end namespace lab2
 
-
-// Test
-/*int main() {
-	lab2::Gregorian g1;
-
-	std::cout << g1.year() << "-" << g1.month() << "-" << g1.day() << std::endl;
-	std::cout << "month name: " << g1.month_name() << std::endl;
-	std::cout << "week day: " << g1.week_day_name() << std::endl;
-	std::cout << std::endl;
-
-	lab2::Gregorian g2(2013, 11, 9);
-	std::cout << g2.year() << "-" << g2.month() << "-" << g2.day() << std::endl;
-	std::cout << "month name: " << g2.month_name() << std::endl;
-	std::cout << "week day: " << g2.week_day_name() << std::endl;
-	std::cout << std::endl;
-
-	lab2::Gregorian g3(2000, 2, 13);
-	std::cout << g3.year() << "-" << g3.month() << "-" << g3.day() << std::endl;
-	std::cout << "month name: " << g3.month_name() << std::endl;
-	std::cout << "week day: " << g3.week_day_name() << std::endl;
-	std::cout << std::endl;
-
-	lab2::Gregorian g4(1900, 2, 13);
-	std::cout << g4.year() << "-" << g4.month() << "-" << g4.day() << std::endl;
-	std::cout << "month name: " << g4.month_name() << std::endl;
-	std::cout << "week day: " << g4.week_day_name() << std::endl;
-
-
-	return 0;
-}*/
