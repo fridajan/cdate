@@ -9,7 +9,9 @@ namespace lab2
 {
 	class Julian : public GregAndJulianDate {
 
-   		std::tuple<int,int,int> fromJDNtoJulianDate(long double JDN) const;
+   		std::tuple<int,int,int> fromJDNtoJulianDate(double JDN) const;
+   		double add_one_month(double time);
+   		double sub_one_month(double time);
 		public:
 			//double j_day_number;
 			Julian();
