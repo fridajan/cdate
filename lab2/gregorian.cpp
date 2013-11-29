@@ -35,12 +35,16 @@ namespace lab2
 	    int month = t->tm_mon + 1;      // månaderna och dagarna
 	    int day   = t->tm_mday;         // indexerade från ETT
 
-	    current_time = toJDN(year, month, day);
+		if(validDate(year, month, day)) {
+		    current_time = toJDN(year, month, day);
+		} else {
+			throw std::out_of_range("exception_in_constructor");			
+		}
 	}
 
 	Gregorian::Gregorian(int year, int month, int day)
 	{
-		if(year >= 1858 && year <= 2558) {
+		if(validDate(year, month, day)) {
 			current_time = toJDN(year, month, day);	
 		} else {
 			throw std::out_of_range("exception_in_constructor");
@@ -50,9 +54,9 @@ namespace lab2
 	Gregorian::Gregorian(const Date& date)
 	{
 		current_time = date.current_time;
-		if(year() < 1858 && year() < 2558) {
+		/*if(year() < 1858 && year() < 2558 && day() <= daysAMonth(month(), year())) {
 			throw std::out_of_range("exception_in_copy_constructor");
-		}			
+		}*/
 	};
 
 	Gregorian::~Gregorian()
@@ -270,6 +274,17 @@ namespace lab2
 		}
 	}
 
+	bool Gregorian::validDate(int year, int month, int day) const
+	{
+		if(year < 1858 || year > 2558) {
+			return false;
+		} if(month < 1 || month > months_per_year()) {
+			return false;
+		} if(day < 1 || day > daysAMonth(month, year)) {
+			return false;
+		}
+		return true;
+	}
 
 
 }	// end namespace lab2
