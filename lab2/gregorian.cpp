@@ -25,10 +25,9 @@ namespace lab2
 
 	Gregorian::Gregorian()
 	{
-
 		// För att få nuvarande tid
 	    time_t mytime;
-	    time(&mytime);
+	    k_time(&mytime);
 
 	    // För att få ut datum lokalt 
 	    struct tm *t = gmtime(&mytime);
@@ -37,17 +36,23 @@ namespace lab2
 	    int day   = t->tm_mday;         // indexerade från ETT
 
 	    current_time = toJDN(year, month, day);
-
 	}
 
 	Gregorian::Gregorian(int year, int month, int day)
 	{
-	   	current_time = toJDN(year, month, day);
+		if(year >= 1858 && year <= 2558) {
+			current_time = toJDN(year, month, day);	
+		} else {
+			throw std::out_of_range("exception_in_constructor");
+		}
 	}
 
 	Gregorian::Gregorian(const Date& date)
 	{
 		current_time = date.current_time;
+		if(year() < 1858 && year() < 2558) {
+			throw std::out_of_range("exception_in_copy_constructor");
+		}			
 	};
 
 	Gregorian::~Gregorian()

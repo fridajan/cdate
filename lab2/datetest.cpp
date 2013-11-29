@@ -22,7 +22,7 @@ int main()
     // Sätt tiden. OBS skicka inte nedanstående kod till kattis
     time_t mytime;
     time(&mytime);
-    //set_k_time(mytime);
+    set_k_time(mytime);
     ////////////////////////////////////////////////////////////
 
     
@@ -42,7 +42,7 @@ int main()
       Date & d1 = j1;
       Julian j2(d1);
       Date * dp = &j2;
-      Julian j3(dp);
+      //Julian j3(dp);
     }
      
     time_t tp;

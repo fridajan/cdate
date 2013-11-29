@@ -12,11 +12,19 @@ public:
     void test_constructor( void )
     {
         lab2::Gregorian g1(2013, 11, 13);
-
-    	//int result;
     	TS_ASSERT_EQUALS( 2013, g1.year());
         TS_ASSERT_EQUALS( 11, g1.month());
         TS_ASSERT_EQUALS( 13, g1.day());
+
+        lab2::Gregorian g2(1992, 9, 22);
+        TS_ASSERT_EQUALS( 1992, g2.year());
+        TS_ASSERT_EQUALS( 9, g2.month());
+        TS_ASSERT_EQUALS( 22, g2.day());
+
+        g1 = g2;
+        TS_ASSERT_EQUALS( 1992, g1.year());
+        TS_ASSERT_EQUALS( 9, g1.month());
+        TS_ASSERT_EQUALS( 22, g1.day());
     }
 
     // Testcase 2
