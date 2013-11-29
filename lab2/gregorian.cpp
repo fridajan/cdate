@@ -54,9 +54,6 @@ namespace lab2
 	Gregorian::Gregorian(const Date& date)
 	{
 		current_time = date.current_time;
-		/*if(year() < 1858 && year() < 2558 && day() <= daysAMonth(month(), year())) {
-			throw std::out_of_range("exception_in_copy_constructor");
-		}*/
 	};
 
 	Gregorian::~Gregorian()
