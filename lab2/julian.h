@@ -2,6 +2,8 @@
 #include "kattistime.h"
 #include "GregAndJulianDate.h"
 #include <string>
+#include <tuple>
+
 
 namespace lab2
 {
@@ -12,8 +14,9 @@ namespace lab2
 			//double j_day_number;
 			Julian();
 			Julian(int year, int month, int day);
+			Julian(const Date& date);
 			Julian & operator= (const Date & date);
-			virtual ~Julian(){};
+			virtual ~Julian() { };
 
 			virtual int year() const;
 			virtual int month() const;
@@ -27,7 +30,5 @@ namespace lab2
       		virtual int days_this_month() const;
       		virtual std::string month_name() const;
       		//virtual Julian& operator+=(int n);
-
-
-	};
+	};	
 }

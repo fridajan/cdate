@@ -1,5 +1,6 @@
 #include "kattistime.h"
 #include "julian.h"
+#include "GregAndJulianDate.h" 
 #include <math.h>       /* floor */
 #include <tuple>
 #include <string>
@@ -9,7 +10,8 @@
 
 namespace lab2{
 	
-	std::tuple<int,int,int> Julian::fromJDNtoJulianDate(long double JDN) const{	
+	std::tuple<int,int,int> Julian::fromJDNtoJulianDate(long double JDN) const
+	{	
 	    double z, a, b, c, d, e;
 	    //printf("JDN1: %lf\n", JDN);
     	JDN += 0.5;
@@ -27,8 +29,7 @@ namespace lab2{
     	int day = b - d - floor(30.6001 * e);
 
     	return std::make_tuple (year, month, day);
-	}
-
+	};
 
 	Julian::Julian()
 	{
@@ -79,10 +80,16 @@ namespace lab2{
         //printf("%lf\n", current_time-2400000.5);
 	}
 
+	Julian::Julian(const Date& date)
+	{
+		current_time = date.current_time;
+	};
+
 	Julian & Julian::operator= (const Date & date){
 	   	current_time = date.current_time;
 		return *this;
 	}
+
 	int Julian::year() const{ 
 		return std::get<0>(this->fromJDNtoJulianDate(current_time)); //Calculate from JDN*/
 	};
@@ -101,7 +108,7 @@ namespace lab2{
 
 	std::string Julian::week_day_name() const{
 		int week_day = (int)current_time % 7;
-		return WEEKDAYS[week_day];
+		return m_weekDays[week_day];
 	};
 
 	int Julian::days_this_month() const{
@@ -115,7 +122,7 @@ namespace lab2{
 
 	std::string Julian::month_name() const{
 		int index = this->month() - 1;
-		return MONTHS[index];
+		return m_months[index];
 	};
 
 	void Julian::add_year(int n){

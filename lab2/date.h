@@ -8,14 +8,13 @@ namespace lab2
 {
   class Date {
   protected:
-    //double current_time;
-
-    public:
       double current_time;
-      //Date() = 0;
-      //Date(int year, int month, int day) = 0;
 
     public:
+      friend class Julian;
+      friend class Gregorian;
+      friend class GregAndJulianDate;
+
       //Date() 
       //Date(int year, int month, int day)
       //virtual ~Date() { };
@@ -56,6 +55,10 @@ namespace lab2
           return *this;
       };
 
+      virtual int operator-(const Date& d) const {
+          return current_time - d.current_time;
+      };
+
     	virtual bool operator==(const Date& d) const =0;
 
     	virtual bool operator!=(const Date& d) const =0;
@@ -67,8 +70,6 @@ namespace lab2
     	virtual bool operator>(const Date& d) const =0;
 
     	virtual bool operator>=(const Date& d) const =0;
-
-    	virtual int operator-(const Date& d) const =0;
 
       virtual int mod_julian_day() const =0;
   };

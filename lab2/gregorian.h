@@ -10,7 +10,10 @@ namespace lab2
 	public:
 		Gregorian();
 		Gregorian(int year, int month, int day);
+		Gregorian(const Date& date);
 		~Gregorian();
+
+		Gregorian & operator= (const Date & date);
 
 		int year() const;
 		int month() const;
@@ -25,6 +28,7 @@ namespace lab2
     	void add_month(int n = 1);
 
 	private:
+		void sub_month(int n);
 		bool isLeapYear(int year) const;
 		int daysAMonth(int month, int year) const;
 		double toJDN(int year, int month, int day) const;
@@ -37,7 +41,7 @@ namespace lab2
 		static const std::string m_monthsName[];
 	};
 
-    std::ostream & operator<<(std::ostream & os, const Date &);
+    //std::ostream & operator<<(std::ostream & os, const Date &);
 }
 
 #endif /* GREGORIAN_H_ */

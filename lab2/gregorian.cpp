@@ -45,8 +45,18 @@ namespace lab2
 	   	current_time = toJDN(year, month, day);
 	}
 
+	Gregorian::Gregorian(const Date& date)
+	{
+		current_time = date.current_time;
+	};
+
 	Gregorian::~Gregorian()
 	{
+	}
+
+	Gregorian & Gregorian::operator= (const Date & date){
+	   	current_time = date.current_time;
+		return *this;
 	}
 
 	int Gregorian::year() const 
@@ -101,12 +111,12 @@ namespace lab2
 
     std::string Gregorian::week_day_name() const
     {
-    	return m_weekDaysName[week_day()-1];
+    	return m_weekDays[week_day()-1];
     }
 
 	std::string Gregorian::month_name() const
 	{
-		return m_monthsName[month() - 1];
+		return m_months[month() - 1];
     }
 
 	void Gregorian::add_year(int n) 
@@ -124,29 +134,57 @@ namespace lab2
 
 	void Gregorian::add_month(int n) 
 	{   
-		int y = year();
-		int m = month() + 1;
-		int d = day();
-		if(m > months_per_year()) {
-			m = 1;
-			y++;
-		}
-		if(d > daysAMonth(m, y)) {
-			d = d - daysAMonth(m-1, y) + 30;
-			if(d > daysAMonth(m, y)) {
-				d -= daysAMonth(m, y);
-				m++;
-			}
-		}
-		if(n == 1) {
-			current_time = toJDN(y, m, d);
+		if(n < 0) {
+			sub_month(n);
 		} else {
-			current_time = toJDN(y, m, d);
-			add_month(n-1);
+			int y = year();
+			int m = month() + 1;
+			int d = day();
+			if(m > months_per_year()) {
+				m = 1;
+				y++;
+			}
+			if(d > daysAMonth(m, y)) {
+				d = d - daysAMonth(m-1, y) + 30;
+				if(d > daysAMonth(m, y)) {
+					d -= daysAMonth(m, y);
+					m++;
+				}
+			}
+			if(n == 1) {
+				current_time = toJDN(y, m, d);
+			} else {
+				current_time = toJDN(y, m, d);
+				add_month(n-1);
+			}
 		}
 	}
 
-	std::ostream & operator<<(std::ostream & os, const Date & date)
+	void Gregorian::sub_month(int n) 
+	{   
+		int y = year();
+		int m = month() - 1;
+		int d = day();
+		if(m > 1) {
+			m = 12;
+			y--;
+		}
+		if(d > daysAMonth(m, y)) {
+			d = d - daysAMonth(m+1, y) + 30;
+			if(d > daysAMonth(m, y)) {
+				d -= daysAMonth(m, y);
+				m--;
+			}
+		}
+		if(n == -1) {
+			current_time = toJDN(y, m, d);
+		} else {
+			current_time = toJDN(y, m, d);
+			sub_month(n+1);
+		}
+	}
+
+/*	std::ostream & operator<<(std::ostream & os, const Date & date)
 	{
 		int y = date.year();
 		int m = date.month();
@@ -168,7 +206,7 @@ namespace lab2
 		std::string str = oss.str();
 		os << str;
 		return os;
-	}
+	}*/
 
 
 	bool Gregorian::isLeapYear(int year) const

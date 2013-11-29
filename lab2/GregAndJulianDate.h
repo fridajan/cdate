@@ -12,8 +12,6 @@ namespace lab2
 	class GregAndJulianDate : public Date {
 
 	public:
-        //virtual ~GregAndJulianDate() { };
-
     	virtual int year() const = 0;
         virtual int month() const = 0;
         virtual int day() const = 0;
@@ -35,8 +33,11 @@ namespace lab2
         bool operator<=(const Date& d) const;
         bool operator>(const Date& d) const;
         bool operator>=(const Date& d) const;
-        int operator-(const Date& d) const;
         int mod_julian_day() const;
+
+
+        static const std::string m_weekDays[];
+        static const std::string m_months[];
 	};
 
     std::ostream & operator<<(std::ostream & os, const Date &);
