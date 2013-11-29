@@ -34,8 +34,8 @@ namespace lab2{
 	Julian::Julian()
 	{
 		// För att få nuvarande tid
-        time_t mytime;
-        time(&mytime);
+	    time_t mytime;
+	    k_time(&mytime);
 
         // För att få ut datum lokalt 
         struct tm *t = gmtime(&mytime);
