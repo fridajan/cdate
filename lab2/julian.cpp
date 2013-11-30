@@ -167,7 +167,6 @@ namespace lab2{
     };
 
     double Julian::add_one_month(double current_time){
-    	int daysPerMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     	std::tuple<int,int,int> d = this->fromJDNtoJulianDate(current_time);
 		int year = std::get<0>(d);
 		int month = std::get<1>(d);
@@ -179,19 +178,18 @@ namespace lab2{
 		}else{
 			++month;
 		}
-
-		if(year % 4 == 0){
-			daysPerMonth[1] = 29;
-		}
-		if(day > daysPerMonth[month-1]){
-			day = 30;
+		if(day > daysAMonth(month, year)){
+			day = (day + 30) % daysAMonth(month-1, year);
+			if(month == 2 && day > daysAMonth(month, year)){
+				day = day % daysAMonth(month, year); //Days of february
+				++month;
+			}
 		}
 		Julian new_date(year, month, day);
 		return new_date.current_time;
     }
 
     double Julian::sub_one_month(double current_time){
-    	int daysPerMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     	std::tuple<int,int,int> d = this->fromJDNtoJulianDate(current_time);
 		int year = std::get<0>(d);
 		int month = std::get<1>(d);
@@ -203,16 +201,19 @@ namespace lab2{
 		}else{
 			--month;
 		}
-
-		if(year % 4 == 0){
-			daysPerMonth[1] = 29;
-		}
-		if(day > daysPerMonth[month-1]){
-			day = 30;
+		if(day > daysAMonth(month, year)){
+			day = day - 30;
+			if(day > 0){
+				++month;
+			}else{ //Only in february
+				day = daysAMonth(month, year) + day; //Days of february
+			}
 		}
 		Julian new_date(year, month, day);
 		return new_date.current_time;
     }
 
-
+    int Julian::mod_julian_day() const{
+  		return current_time - 2400000.5;
+  	};
 }

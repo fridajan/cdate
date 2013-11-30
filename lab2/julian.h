@@ -24,15 +24,15 @@ namespace lab2
 
 			virtual int year() const;
 			virtual int month() const;
-      		virtual int day() const;
-      		virtual int week_day() const;
-      		virtual std::string week_day_name() const;
+   		virtual int day() const;
+   		virtual int week_day() const;
+   		virtual std::string week_day_name() const;
 
-      		virtual void add_year(int n);
-      		virtual void add_month(int n);
+   		virtual void add_year(int n);
+   		virtual void add_month(int n);
 
-      		virtual int days_this_month() const;
-      		virtual std::string month_name() const;
-      		//virtual Julian& operator+=(int n);
+   		virtual int days_this_month() const;
+   		virtual std::string month_name() const;
+   		virtual int mod_julian_day() const;
 	};	
 }

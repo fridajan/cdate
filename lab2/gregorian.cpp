@@ -283,6 +283,8 @@ namespace lab2
 		return true;
 	}
 
-
+	int Gregorian::mod_julian_day() const{
+  		return current_time - 2400001;
+  	};
 }	// end namespace lab2
 

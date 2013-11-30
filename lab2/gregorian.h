@@ -26,6 +26,7 @@ namespace lab2
 
     	void add_year(int n = 1);
     	void add_month(int n = 1);
+    	int mod_julian_day() const;
 
 	private:
 		void sub_month(int n);
