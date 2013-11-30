@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <math.h>       /* round */
 
 namespace lab2 
 {
@@ -56,7 +57,7 @@ namespace lab2
       };
 
       virtual int operator-(const Date& d) const {
-          return current_time - d.current_time;
+          return round(current_time) - round(d.current_time);
       };
 
     	virtual bool operator==(const Date& d) const =0;
