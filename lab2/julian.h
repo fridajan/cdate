@@ -12,6 +12,8 @@ namespace lab2
    		std::tuple<int,int,int> fromJDNtoJulianDate(double JDN) const;
    		double add_one_month(double time);
    		double sub_one_month(double time);
+   		int daysAMonth(int month, int year) const;
+   		bool validDate(int year, int month, int day) const;
 		public:
 			//double j_day_number;
 			Julian();

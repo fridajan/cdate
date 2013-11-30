@@ -10,6 +10,26 @@
 
 namespace lab2{
 	
+	int Julian::daysAMonth(int month, int year) const{
+		int daysPerMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+		if(year % 4 == 0){
+			daysPerMonth[1] = 29;
+		}
+		return daysPerMonth[month-1];
+	}
+
+	bool Julian::validDate(int year, int month, int day) const
+	{
+		if(year < 1858 || year > 2558) {
+			return false;
+		} if(month < 1 || month > months_per_year()) {
+			return false;
+		} if(day < 1 || day > daysAMonth(month, year)) {
+			return false;
+		}
+		return true;
+	}
+
 	std::tuple<int,int,int> Julian::fromJDNtoJulianDate(double JDN) const
 	{	
 	    double z, a, b, c, d, e;
@@ -45,12 +65,17 @@ namespace lab2{
 
        	//std::cout << year << ":" << month << ":" << day << std::endl;
 
-    	int a = (14-month)/12;
-		int y = year+4800-a;
-		int m = month + 12*a -3;
-
 		//Gregorian time to JDN
-		current_time = day + (153*m+2)/5 + 365*y + (y/4)-(y/100)+(y/400)-32045;
+		if(validDate(year, month, day)) {
+			int a = (14-month)/12;
+			int y = year+4800-a;
+			int m = month + 12*a -3;
+
+		    current_time = day + (153*m+2)/5 + 365*y + (y/4)-(y/100)+(y/400)-32045;
+		} else {
+			throw std::out_of_range("exception_in_constructor");			
+		}
+		
 		
 		//printf("%lf\n", current_time);
         //printf("%lf\n", current_time-2400000.5);
@@ -58,26 +83,16 @@ namespace lab2{
 
 	Julian::Julian(int year, int month, int day)
 	{
-    	/*int a = (14-month)/12;
-		int y_tmp = year+4800-a;
-		int m_tmp = month + 12*a -3;
-
-		//Julian time to JDN
-		current_time = day + (153 * m_tmp + 2)/5 + 365 * y_tmp + (y_tmp/4)-32083;*/
-		
-		/* Algorithm as given in Meeus, Astronomical Algorithms, Chapter 7, page 61 */
-		if (month <= 2) {
-        	year--;
-        	month += 12;
-    	}
-
-
-    	current_time = (double) ((floor((365.25 * (year + 4716))) +
-            floor((30.6001 * (month + 1))) +
-            day) - 1524.5);
-		
-		//printf("%lf:%d\n", current_time, day);
-        //printf("%lf\n", current_time-2400000.5);
+    	if(validDate(year, month, day)) {
+    		if (month <= 2) {
+        		year--;
+        		month += 12;
+    		}
+		    current_time = (double) ((floor((365.25 * (year + 4716))) +
+            	floor((30.6001 * (month + 1))) + day) - 1524.5);
+		} else {
+			throw std::out_of_range("exception_in_constructor");			
+		}
 	}
 
 	Julian::Julian(const Date& date)
@@ -103,12 +118,14 @@ namespace lab2{
 	};
 
 	int Julian::week_day() const{
-		return (int)current_time % 7;
+		int tmp = ((int)round(current_time)) % 7;
+		++tmp;
+		return tmp ;
 	};
 
 	std::string Julian::week_day_name() const{
-		int week_day = (int)current_time % 7;
-		return m_weekDays[week_day];
+		int wkDay = this->week_day();
+		return m_weekDays[wkDay-1];
 	};
 
 	int Julian::days_this_month() const{
