@@ -245,7 +245,7 @@ namespace lab2
 		return jdn;
 	}
 
-	double Gregorian::toDate(int &year, int &month, int &day) const
+	void Gregorian::toDate(int &year, int &month, int &day) const
 	{
 		int Q = current_time + 0.5;
 		int Z = Q;

@@ -32,7 +32,7 @@ namespace lab2
 		bool isLeapYear(int year) const;
 		int daysAMonth(int month, int year) const;
 		double toJDN(int year, int month, int day) const;
-		double toDate(int &year, int &month, int &day) const;
+		void toDate(int &year, int &month, int &day) const;
 		bool validDate(int year, int month, int d) const;
 
 		static const int m_daysPerMonth[];
