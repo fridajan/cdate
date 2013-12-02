@@ -159,7 +159,7 @@ namespace lab2{
     		for(int i = 0; i < n; ++i){
     			current_time = add_one_month(current_time);
     		}
-    	}else{
+    	}else if(n < 0){
     		for(int i = n; i < 0; ++i){
     			current_time = sub_one_month(current_time);
     		}
