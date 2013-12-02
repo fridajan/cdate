@@ -115,6 +115,13 @@ public:
         TS_ASSERT_EQUALS( 2002, g1.year());
         TS_ASSERT_EQUALS( 3, g1.month());
         TS_ASSERT_EQUALS( 1, g1.day()); //Enligt labbpeket
+
+
+        lab2::Gregorian g2(1992, 2, 29);
+        g2.add_month(29);
+        TS_ASSERT_EQUALS(1994, g2.year());
+        TS_ASSERT_EQUALS(7, g2.month());
+        TS_ASSERT_EQUALS(28, g2.day());
     }
 
     // Testcase 6

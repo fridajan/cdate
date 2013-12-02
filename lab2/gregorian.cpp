@@ -190,31 +190,6 @@ namespace lab2
 		}
 	}
 
-/*	std::ostream & operator<<(std::ostream & os, const Date & date)
-	{
-		int y = date.year();
-		int m = date.month();
-		int d = date.day();
-
-		std::ostringstream oss;
-		oss << y << "-";
-		if(m < 10) {
-			oss << "0" << m << "-";
-		} else {
-			oss << m << "-";
-		}
-
-		if(d < 10) {
-			oss << "0" << d;
-		} else {
-			oss << d;
-		}
-		std::string str = oss.str();
-		os << str;
-		return os;
-	}*/
-
-
 	bool Gregorian::isLeapYear(int year) const
 	{
 		if( (year % 4 == 0 && year % 100 != 0) ||
