@@ -142,7 +142,7 @@ namespace lab2
 	{   
 		if(n < 0) {
 			sub_month(n);
-		} else {
+		} else if(n > 0) {
 			int y = year();
 			int m = month() + 1;
 			int d = day();
