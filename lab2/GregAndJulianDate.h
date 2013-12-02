@@ -33,7 +33,7 @@ namespace lab2
         bool operator<=(const Date& d) const;
         bool operator>(const Date& d) const;
         bool operator>=(const Date& d) const;
-        int mod_julian_day() const = 0;
+        int mod_julian_day() const;
 
 
         static const std::string m_weekDays[];

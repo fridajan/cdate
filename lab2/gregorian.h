@@ -26,7 +26,7 @@ namespace lab2
 
     	void add_year(int n = 1);
     	void add_month(int n = 1);
-    	int mod_julian_day() const;
+    	//int mod_julian_day() const;
 
 	private:
 		void sub_month(int n);
@@ -38,7 +38,7 @@ namespace lab2
 
 		double add_one_month(double time);
    		double sub_one_month(double time);
-   		
+
 		static const int m_daysPerMonth[];
 		static const int m_monthTable[];
 		static const int m_centuriesTable[];
