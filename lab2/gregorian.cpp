@@ -172,8 +172,6 @@ namespace lab2
 		return new_date.current_time;
     }
 
-<<<<<<< HEAD
-=======
     double Gregorian::sub_one_month(double current_time){
     	int y = year();
 		int m = month();
@@ -198,7 +196,6 @@ namespace lab2
     }
 
 
->>>>>>> 618732056b1b9a058879a6ad788069cf8b0163c2
 	bool Gregorian::isLeapYear(int year) const
 	{
 		if( (year % 4 == 0 && year % 100 != 0) ||
