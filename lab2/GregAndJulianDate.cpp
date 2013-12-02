@@ -96,5 +96,9 @@ namespace lab2{
 		os << str;
 		return os;
 	}
+	
+	int GregAndJulianDate::mod_julian_day() const{
+  		return current_time - 2400000.5;
+  	};
 
 }

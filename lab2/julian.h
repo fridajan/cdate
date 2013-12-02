@@ -1,3 +1,5 @@
+#ifndef JULIAN_H_
+#define JULIAN_H_
 //This is the julian calendar!!
 #include "kattistime.h"
 #include "GregAndJulianDate.h"
@@ -31,8 +33,15 @@ namespace lab2
 	   		virtual void add_year(int n);
 	   		virtual void add_month(int n);
 
+<<<<<<< HEAD
 	   		virtual int days_this_month() const;
 	   		virtual std::string month_name() const;
 	   		virtual int mod_julian_day() const;
+=======
+   		virtual int days_this_month() const;
+   		virtual std::string month_name() const;
+   		//virtual int mod_julian_day() const;
+>>>>>>> 8de95d9aa80f1ad90a0a2c7ce686f3f297a21fcf
 	};	
 }
+#endif /* JULIAN_H_ */

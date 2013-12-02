@@ -213,7 +213,7 @@ namespace lab2{
 		return new_date.current_time;
     }
 
-    int Julian::mod_julian_day() const{
+   	/*int Julian::mod_julian_day() const{
   		return current_time - 2400000.5;
-  	};
+  	};*/
 }

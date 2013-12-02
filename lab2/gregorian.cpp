@@ -2,6 +2,7 @@
 #include "GregAndJulianDate.h" 
 #include "kattistime.h"
 #include <stdexcept>
+#include <math.h>       /* floor */
 #include <iostream>
 #include <sstream>
 
@@ -153,7 +154,7 @@ namespace lab2
     double Gregorian::add_one_month(double current_time){
 		int y = year();
 		int m = month();
-		int d = day();
+		int d = day(); 
 
 		if(m == 12){
 			m = 1;
@@ -217,13 +218,27 @@ namespace lab2
 	double Gregorian::toJDN(int year, int month, int day) const
 	{
 
-    	int a = (14-month)/12;
+    	/*int a = (14-month)/12;
 		int y = year+4800-a;
 		int m = month + 12*a -3;
 
 		//Gregorian time to JDN
-		double jdn = day + (153*m+2)/5 + 365*y + (y/4)-(y/100)+(y/400)-32045;
-		return jdn;
+		double jdn = day + (153*m+2)/5 + 365*y + (y/4)-(y/100)+(y/400)-32045;*/
+
+		double GREGORIAN_EPOCH = 1721425.5;
+
+
+    return (GREGORIAN_EPOCH - 1) +
+           (365 * (year - 1)) +
+           floor((year - 1) / 4) +
+           (-floor((year - 1) / 100)) +
+           floor((year - 1) / 400) +
+           floor((((367 * month) - 362) / 12) +
+           ((month <= 2) ? 0 :
+                               (isLeapYear(year) ? -1 : -2)
+           ) +
+           day);
+
 	}
 
 	void Gregorian::toDate(int &year, int &month, int &day) const
@@ -264,9 +279,9 @@ namespace lab2
 		return true;
 	}
 
-	int Gregorian::mod_julian_day() const{
-  		return current_time - 2400001;
-  	};
+/*	int Gregorian::mod_julian_day() const{
+  		return current_time - 2400000.5;
+  	};*/
 
 }	// end namespace lab2
 
