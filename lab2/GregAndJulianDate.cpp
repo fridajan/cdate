@@ -68,11 +68,6 @@ namespace lab2{
 		}
 	};
 
-  	int GregAndJulianDate::mod_julian_day() const{
-  		return current_time - 2400001;
-  		//return current_time - 2400000.5;
-  	};
-
 	std::ostream & operator<<(std::ostream & os, const Date & date)
 	{
 		int y = date.year();

@@ -26,13 +26,14 @@ namespace lab2
 
     	void add_year(int n = 1);
     	void add_month(int n = 1);
+    	int mod_julian_day() const;
 
 	private:
 		void sub_month(int n);
 		bool isLeapYear(int year) const;
 		int daysAMonth(int month, int year) const;
 		double toJDN(int year, int month, int day) const;
-		double toDate(int &year, int &month, int &day) const;
+		void toDate(int &year, int &month, int &day) const;
 		bool validDate(int year, int month, int d) const;
 
 		static const int m_daysPerMonth[];
