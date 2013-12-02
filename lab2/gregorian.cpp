@@ -138,81 +138,62 @@ namespace lab2
 		current_time = toJDN(y, m, d);
 	}
 
-	void Gregorian::add_month(int n) 
-	{   
-		if(n < 0) {
-			sub_month(n);
-		} else {
-			int y = year();
-			int m = month() + 1;
-			int d = day();
-			if(m > months_per_year()) {
-				m = 1;
-				y++;
-			}
-			if(d > daysAMonth(m, y)) {
-				d = d - daysAMonth(m-1, y) + 30;
-				if(d > daysAMonth(m, y)) {
-					d -= daysAMonth(m, y);
-					m++;
-				}
-			}
-			if(n == 1) {
-				current_time = toJDN(y, m, d);
-			} else {
-				current_time = toJDN(y, m, d);
-				add_month(n-1);
-			}
-		}
-	}
+	 void Gregorian::add_month(int n){
+    	if(n > 0){
+    		for(int i = 0; i < n; ++i){
+    			current_time = add_one_month(current_time);
+    		}
+    	}else if(n < 0){
+    		for(int i = n; i < 0; ++i){
+    			current_time = sub_one_month(current_time);
+    		}
+    	}
+    };
 
-	void Gregorian::sub_month(int n) 
-	{   
+    double Gregorian::add_one_month(double current_time){
 		int y = year();
-		int m = month() - 1;
+		int m = month();
 		int d = day();
-		if(m > 1) {
-			m = 12;
-			y--;
+
+		if(m == 12){
+			m = 1;
+			++y;
+		}else{
+			++m;
 		}
-		if(d > daysAMonth(m, y)) {
-			d = d - daysAMonth(m+1, y) + 30;
-			if(d > daysAMonth(m, y)) {
-				d -= daysAMonth(m, y);
-				m--;
+		if(d > daysAMonth(m, y)){
+			d = (d + 30) % daysAMonth(m-1, y);
+			if(m == 2 && d > daysAMonth(m, y)){
+				d = d % daysAMonth(m, y); //Days of february
+				++m;
 			}
 		}
-		if(n == -1) {
-			current_time = toJDN(y, m, d);
-		} else {
-			current_time = toJDN(y, m, d);
-			sub_month(n+1);
-		}
-	}
+		Gregorian new_date(y, m, d);
+		return new_date.current_time;
+    }
 
-/*	std::ostream & operator<<(std::ostream & os, const Date & date)
-	{
-		int y = date.year();
-		int m = date.month();
-		int d = date.day();
+    double Gregorian::sub_one_month(double current_time){
+    	int y = year();
+		int m = month();
+		int d = day();
 
-		std::ostringstream oss;
-		oss << y << "-";
-		if(m < 10) {
-			oss << "0" << m << "-";
-		} else {
-			oss << m << "-";
+		if(m == 1){
+			m = 12;
+			--y;
+		}else{
+			--m;
 		}
-
-		if(d < 10) {
-			oss << "0" << d;
-		} else {
-			oss << d;
+		if(d > daysAMonth(m, y)){
+			d = d - 30;
+			if(d > 0){
+				++m;
+			}else{ //Only in february
+				d = daysAMonth(m, y) + d; //Days of february
+			}
 		}
-		std::string str = oss.str();
-		os << str;
-		return os;
-	}*/
+		Gregorian new_date(y, m, d);
+		return new_date.current_time;
+    }
 
 
 	bool Gregorian::isLeapYear(int year) const
@@ -286,5 +267,6 @@ namespace lab2
 	int Gregorian::mod_julian_day() const{
   		return current_time - 2400001;
   	};
+
 }	// end namespace lab2
 

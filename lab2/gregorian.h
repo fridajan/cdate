@@ -36,6 +36,9 @@ namespace lab2
 		void toDate(int &year, int &month, int &day) const;
 		bool validDate(int year, int month, int d) const;
 
+		double add_one_month(double time);
+   		double sub_one_month(double time);
+   		
 		static const int m_daysPerMonth[];
 		static const int m_monthTable[];
 		static const int m_centuriesTable[];
