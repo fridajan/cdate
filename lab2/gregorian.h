@@ -45,8 +45,6 @@ namespace lab2
 		static const std::string m_weekDaysName[];
 		static const std::string m_monthsName[];
 	};
-
-    //std::ostream & operator<<(std::ostream & os, const Date &);
 }
 
 #endif /* GREGORIAN_H_ */
