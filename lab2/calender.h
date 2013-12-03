@@ -16,16 +16,8 @@ template <class T=Date>
   class Calender {
 
   	private:
-  		struct event {
-  			T* date;
-  			std::string name;
-  			//std::vector<std::string> events;
-  		};
-
   		T* m_date;
-  		//std::vector<event> m_cal;
 	    std::map<T, std::vector<std::string>> m_cal;
-		
 
   	public:
   		/**
@@ -77,31 +69,25 @@ template <class T=Date>
 				d = m_date->day();
 			}
 			try {
-				//std::cout << y << "-" << m << m << "-" << d << std::endl;
 				T date = T(y, m, d);
 				// check if date already in calender
 				if(m_cal.count(date) > 0) {
-					//std::cout << "date exist";
 					std::vector<std::string> v = m_cal[date];
 					// check if event exist
 					if(std::find(v.begin(), v.end(), event) != v.end()) {
-						//std::cout << "event exist";
 						return false;
 					} else {
-						//std::cout << "new event";
 						v.push_back(event);
 						m_cal[date] = v;
 						return true;
 					}
 				} else {
-					//std::cout << "new date";
 					std::vector<std::string> v;
 					v.push_back(event);
 					m_cal[date] = v;
 					return true;
 				}
 	        } catch(const std::out_of_range& oor) {
-	        	//std::cout << "fail";
 	        	return false;
 			}
 		}
