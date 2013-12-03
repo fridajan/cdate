@@ -45,6 +45,7 @@ template <class T=Date>
 		Calendar<T> & operator= (const Calendar<T2> & cal)
 		{
 			m_date = cal.get_date();
+			std::cout << m_date << std::endl;
 			m_cal.clear();
 			std::map<T2, std::vector<std::string>> entries = cal.get_calender();
 			typename std::map<T2, std::vector<std::string>>::iterator it;
