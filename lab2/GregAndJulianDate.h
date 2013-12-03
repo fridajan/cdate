@@ -12,6 +12,8 @@ namespace lab2
 	class GregAndJulianDate : public Date {
 
 	public:
+        virtual ~GregAndJulianDate() { };
+
     	virtual int year() const = 0;
         virtual int month() const = 0;
         virtual int day() const = 0;

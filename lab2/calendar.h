@@ -33,7 +33,8 @@ template <class T=Date>
 		 */
 		Calendar(const Calendar& cal)
 		{
-			*this = cal;
+			m_date = new T(*cal.m_date);
+			m_cal = cal.m_cal;
 		}
 
   		~Calendar()
@@ -43,7 +44,8 @@ template <class T=Date>
 
 		Calendar & operator= (const Calendar & cal)
 		{
-			m_date = cal.m_date;
+			delete m_date;
+			m_date = new T(*cal.m_date);
 			m_cal = cal.m_cal;
 			return *this;
 		}

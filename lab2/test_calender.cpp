@@ -2,7 +2,7 @@
 #include "kattistime.h"     
 #include "julian.h"         
 #include "gregorian.h"      
-#include "calender.h"
+#include "calendar.h"
 
 // STL headerfiler
 #include <iostream>
@@ -54,6 +54,23 @@ int main()
     }
     std::cout << "----------------------------------------" << std::endl;
     std::cout << cal;
+
+    std::cout << "----------------------------------------" << std::endl;
+    
+    Calendar<Gregorian> cal2 = cal;
+    std::cout << cal2;
+
+    std::cout << "----------------------------------------" << std::endl;
+    
+    Calendar<Gregorian> cal3;
+    Calendar<Gregorian> cal4 = cal3;
+    std::cout << cal3.get_date() << std::endl;
+    std::cout << cal4.get_date() << std::endl;
+    std::cout << cal4;
+
+    std::cout << "----------------------------------------" << std::endl;
+    /*Calendar<Julian> cal5 = cal;
+    std::cout << cal5;*/
 
     return 0;
 }

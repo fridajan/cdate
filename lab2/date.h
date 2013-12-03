@@ -18,7 +18,7 @@ namespace lab2
 
       //Date() 
       //Date(int year, int month, int day)
-      //virtual ~Date() { };
+      virtual ~Date() { };
 
       virtual int year() const = 0;
       virtual int month() const = 0;
