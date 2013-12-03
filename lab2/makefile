@@ -19,6 +19,6 @@ test_calender:
 	g++ -c -std=c++0x kattistime.cpp
 	g++ -c -std=c++0x GregAndJulianDate.cpp
 	g++ -c -std=c++0x gregorian.cpp
-	g++ -c -std=c++0x calender.cpp
+	g++ -c -std=c++0x calendar.cpp
 	g++ -std=c++0x -Wall test_calender.cpp -o test_calender.out gregorian.o julian.o GregAndJulianDate.o kattistime.o
 
