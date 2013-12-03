@@ -16,6 +16,7 @@ namespace lab2
    		double sub_one_month(double time);
    		int daysAMonth(int month, int year) const;
    		bool validDate(int year, int month, int day) const;
+         double toJDN(int year, int month, int day);
 		public:
 			//double j_day_number;
 			Julian();
