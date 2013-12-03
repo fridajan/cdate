@@ -69,7 +69,8 @@ int main()
     std::cout << cal4;
 
     std::cout << "----------------------------------------" << std::endl;
-    Calendar<Julian> cal5 = cal;
+    Calendar<Julian> cal5;
+    cal5 = cal;
     std::cout << cal5;
 
     return 0;

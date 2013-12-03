@@ -42,10 +42,11 @@ template <class T=Date>
 
   		}
 
-		Calendar & operator= (const Calendar & cal)
+  		template <class T2>
+		Calendar<T> & operator= (const Calendar<T2> & cal)
 		{
-			m_date = cal.m_date;
-			m_cal = cal.m_cal;
+			m_date = cal.get_date();
+			//m_cal = cal.m_cal;
 			return *this;
 		}
 
