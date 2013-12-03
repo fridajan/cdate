@@ -33,15 +33,10 @@ namespace lab2
 	   		virtual void add_year(int n);
 	   		virtual void add_month(int n);
 
-<<<<<<< HEAD
 	   		virtual int days_this_month() const;
 	   		virtual std::string month_name() const;
-	   		virtual int mod_julian_day() const;
-=======
-   		virtual int days_this_month() const;
-   		virtual std::string month_name() const;
-   		//virtual int mod_julian_day() const;
->>>>>>> 8de95d9aa80f1ad90a0a2c7ce686f3f297a21fcf
+	   		//virtual int mod_julian_day() const;
+
 	};	
 }
 #endif /* JULIAN_H_ */
