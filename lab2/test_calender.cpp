@@ -64,8 +64,6 @@ int main()
     
     Calendar<Gregorian> cal3;
     Calendar<Gregorian> cal4 = cal3;
-    std::cout << cal3.get_date() << std::endl;
-    std::cout << cal4.get_date() << std::endl;
     std::cout << cal4;
 
     std::cout << "----------------------------------------" << std::endl;
@@ -73,6 +71,7 @@ int main()
     cal5 = cal;
     std::cout << cal5;
 
+    std::cout << "----------------------------------------" << std::endl;
     return 0;
 }
 

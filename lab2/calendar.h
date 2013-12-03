@@ -33,8 +33,7 @@ template <class T=Date>
 		 */
 		Calendar(const Calendar& cal)
 		{
-			m_date = cal.m_date;
-			m_cal = cal.m_cal;
+			*this = cal;
 		}
 
   		~Calendar()
@@ -42,11 +41,22 @@ template <class T=Date>
 
   		}
 
-  		template <class T2>
+  		template <class T2=Date>
 		Calendar<T> & operator= (const Calendar<T2> & cal)
 		{
 			m_date = cal.get_date();
-			//m_cal = cal.m_cal;
+			m_cal.clear();
+			std::map<T2, std::vector<std::string>> entries = cal.get_calender();
+			typename std::map<T2, std::vector<std::string>>::iterator it;
+			for(it=entries.begin(); it!=entries.end(); ++it) {
+				//T date = it->first;
+				T2 old = it->first;
+				T date = T(old);
+				std::cout << old << std::endl;
+				std::cout << date << std::endl;
+				std::vector<std::string> v = it->second;
+				m_cal[date] = v;
+			}
 			return *this;
 		}
 
