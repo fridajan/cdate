@@ -16,7 +16,7 @@ template <class T=Date>
   class Calendar {
 
   	private:
-  		T* m_date;
+  		T m_date;
 	    std::map<T, std::vector<std::string>> m_cal;
 
   	public:
@@ -25,7 +25,7 @@ template <class T=Date>
 		 */
   		Calendar()
   		{
-  			m_date = new T();
+  			m_date = T();
   		}
 
 		/**
@@ -33,19 +33,18 @@ template <class T=Date>
 		 */
 		Calendar(const Calendar& cal)
 		{
-			m_date = new T(*cal.m_date);
+			m_date = cal.m_date;
 			m_cal = cal.m_cal;
 		}
 
   		~Calendar()
   		{
-  			delete m_date;
+
   		}
 
 		Calendar & operator= (const Calendar & cal)
 		{
-			delete m_date;
-			m_date = new T(*cal.m_date);
+			m_date = cal.m_date;
 			m_cal = cal.m_cal;
 			return *this;
 		}
@@ -53,8 +52,7 @@ template <class T=Date>
 		bool set_date(int y, int m, int d)
 		{
 			try {
-				delete m_date;
-				m_date = new T(y, m, d);	
+				m_date = T(y, m, d);
 	        } catch(const std::out_of_range& oor) {
 	        	return false;
 			}
@@ -64,11 +62,11 @@ template <class T=Date>
 		bool add_event(std::string event, int d=0, int m=0, int y=0)
 		{
 			if(y == 0) {
-				y = m_date->year();
+				y = m_date.year();
 			} if(m == 0) {
-				m = m_date->month();
+				m = m_date.month();
 			} if(d == 0) {
-				d = m_date->day();
+				d = m_date.day();
 			}
 			try {
 				T date = T(y, m, d);
@@ -97,11 +95,11 @@ template <class T=Date>
 		bool remove_event(std::string event, int d=0, int m=0, int y=0)
 		{
 			if(y == 0) {
-				y = m_date->year();
+				y = m_date.year();
 			} if(m == 0) {
-				m = m_date->month();
+				m = m_date.month();
 			} if(d == 0) {
-				d = m_date->day();
+				d = m_date.day();
 			}
 
 			try {
@@ -132,7 +130,7 @@ template <class T=Date>
 
 		T get_date() const
 		{
-			return *m_date;
+			return m_date;
 		}
 
 		std::map<T, std::vector<std::string>> get_calender() const
