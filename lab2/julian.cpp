@@ -155,8 +155,7 @@ namespace lab2{
 		if(((year+n) % 4) != 0 && month == 2 && day == 29){
 			day = 28;
 		}
-		Julian tmp(year+n, month, day);
-		current_time = tmp.current_time;
+		current_time = toJDN(year+n, month, day);
 	};
 	
     void Julian::add_month(int n){
