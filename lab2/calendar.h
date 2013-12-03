@@ -53,8 +53,8 @@ template <class T=Date>
 				//T date = it->first;
 				T2 old = it->first;
 				T date = T(old);
-				std::cout << old << std::endl;
-				std::cout << date << std::endl;
+			//	std::cout << old << std::endl;
+			//	std::cout << date << std::endl;
 				std::vector<std::string> v = it->second;
 				m_cal[date] = v;
 			}
@@ -161,6 +161,7 @@ template <class T=Date>
 		typename std::map<T, std::vector<std::string>>::iterator it;
 		for(it=entries.begin(); it!=entries.end(); ++it) {
 			T date = it->first;
+			//printf("%d-%d-%d\n", date.year(), date.month(), date.year());
 			if(date >= current_date) {
 				std::vector<std::string> v = it->second;
 				for(size_t i=0; i<v.size(); ++i) {
