@@ -84,15 +84,19 @@ namespace lab2{
 	Julian::Julian(int year, int month, int day)
 	{
     	if(validDate(year, month, day)) {
-    		if (month <= 2) {
-        		year--;
-        		month += 12;
-    		}
-		    current_time = (double) ((floor((365.25 * (year + 4716))) +
-            	floor((30.6001 * (month + 1))) + day) - 1524.5);
+    		current_time = toJDN(year, month, day);
 		} else {
 			throw std::out_of_range("exception_in_constructor");			
 		}
+	}
+
+	double Julian::toJDN(int year, int month, int day){
+		if (month <= 2) {
+        		year--;
+        		month += 12;
+    		}
+		 return (double) ((floor((365.25 * (year + 4716))) +
+            	floor((30.6001 * (month + 1))) + day) - 1524.5);
 	}
 
 	Julian::Julian(const Date& date)
@@ -154,6 +158,7 @@ namespace lab2{
 		Julian tmp(year+n, month, day);
 		current_time = tmp.current_time;
 	};
+	
     void Julian::add_month(int n){
     	if(n > 0){
     		for(int i = 0; i < n; ++i){
@@ -185,8 +190,7 @@ namespace lab2{
 				++month;
 			}
 		}
-		Julian new_date(year, month, day);
-		return new_date.current_time;
+		return toJDN(year, month, day);
     }
 
     double Julian::sub_one_month(double current_time){
@@ -195,7 +199,7 @@ namespace lab2{
 		int month = std::get<1>(d);
 		int day = std::get<2>(d);
 
-		if(month == 1){
+		if(month == 1){	//Change year
 			month = 12;
 			--year;
 		}else{
@@ -205,15 +209,10 @@ namespace lab2{
 			day = day - 30;
 			if(day > 0){
 				++month;
-			}else{ //Only in february
+			}else{ //Only in february when day is 29
 				day = daysAMonth(month, year) + day; //Days of february
 			}
-		}
-		Julian new_date(year, month, day);
-		return new_date.current_time;
+		}	
+		return toJDN(year, month, day);
     }
-
-   	/*int Julian::mod_julian_day() const{
-  		return current_time - 2400000.5;
-  	};*/
 }
