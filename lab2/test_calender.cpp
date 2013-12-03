@@ -66,7 +66,7 @@ int main()
     Calendar<Gregorian> cal4 = cal3;
     std::cout << cal4;
 
-    std::cout << "----------------------------------------" << std::endl;
+    std::cout << "-------------JULIAN-------------------------" << std::endl;
     Calendar<Julian> cal5;
     cal5 = cal;
     std::cout << cal5;
