@@ -29,9 +29,9 @@ int main()
     std::cout << "----------------------------------------" << std::endl;
     Calendar<Gregorian> cal;
     cal.set_date(2000, 12, 2);
-    cal.add_event("Basketträning", 4, 12, 2000);
-    cal.add_event("Basketträning", 11, 12, 2000);
     cal.add_event("Nyårsfrukost", 1, 1, 2001);
+    cal.add_event("Basketträning", 11, 12, 2000);
+    cal.add_event("Basketträning", 4, 12, 2000);
     cal.add_event("Första advent", 1);
     // år = 2000, månad = 12
     cal.add_event("Vårdagjämning", 20, 3);
