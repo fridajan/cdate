@@ -31,7 +31,8 @@ template <class T=Date>
 		/**
 		 * Copy constructor
 		 */
-		Calendar(const Calendar& cal)
+   		template <class T2=Date>
+		Calendar(const Calendar<T2>& cal)
 		{
 			*this = cal;
 		}
@@ -84,13 +85,12 @@ template <class T=Date>
 				T date = T(y, m, d);
 				// check if date already in calender
 				if(m_cal.count(date) > 0) {
-					std::vector<std::string> v = m_cal[date];
+					std::vector<std::string> &v = m_cal[date];
 					// check if event exist
 					if(std::find(v.begin(), v.end(), event) != v.end()) {
 						return false;
 					} else {
 						v.push_back(event);
-						m_cal[date] = v;
 						return true;
 					}
 				} else {
@@ -161,11 +161,11 @@ template <class T=Date>
 		typename std::map<T, std::vector<std::string>>::iterator it;
 		for(it=entries.begin(); it!=entries.end(); ++it) {
 			T date = it->first;
-			//printf("%d-%d-%d\n", date.year(), date.month(), date.year());
+			//printf("%d-%d-%d\n", date.year(), date.month(), date.day());
 			if(date >= current_date) {
 				std::vector<std::string> v = it->second;
 				for(size_t i=0; i<v.size(); ++i) {
-					oss << date << ": " << v[i] << std::endl;
+					oss << date << " : " << v[i] << std::endl;
 				}
 			}
 		}
