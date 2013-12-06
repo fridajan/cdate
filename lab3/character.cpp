@@ -1,0 +1,6 @@
+namespace haunted_house
+{
+
+
+}
+
