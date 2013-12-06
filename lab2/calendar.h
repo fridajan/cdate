@@ -31,7 +31,7 @@ template <class T=Date>
 		/**
 		 * Copy constructor
 		 */
-   		template <class T2=Date>
+		template <class T2=Date>
 		Calendar(const Calendar<T2>& cal)
 		{
 			*this = cal;
@@ -72,15 +72,17 @@ template <class T=Date>
 			return true;
 		}
 
-		bool add_event(std::string event, int d=0, int m=0, int y=0)
+		bool add_event(std::string event){
+			return add_event(event, m_date.day(), m_date.month(), m_date.year());
+		}
+		bool add_event(std::string event, int d){
+			return add_event(event, d, m_date.month(), m_date.year());
+		}
+		bool add_event(std::string event, int d, int m){
+			return add_event(event, d, m, m_date.year());
+		}
+		bool add_event(std::string event, int d, int m, int y)
 		{
-			if(y == 0) {
-				y = m_date.year();
-			} if(m == 0) {
-				m = m_date.month();
-			} if(d == 0) {
-				d = m_date.day();
-			}
 			try {
 				T date = T(y, m, d);
 				// check if date already in calender
@@ -104,16 +106,20 @@ template <class T=Date>
 			}
 		}
 
-		bool remove_event(std::string event, int d=0, int m=0, int y=0)
+		bool remove_event(std::string event)
 		{
-			if(y == 0) {
-				y = m_date.year();
-			} if(m == 0) {
-				m = m_date.month();
-			} if(d == 0) {
-				d = m_date.day();
-			}
-
+			return remove_event(event, m_date.day(), m_date.month(), m_date.year());
+		}
+		bool remove_event(std::string event, int d)
+		{
+			return remove_event(event, d, m_date.month(), m_date.year());
+		}
+		bool remove_event(std::string event, int d, int m)
+		{
+			return remove_event(event, d, m, m_date.year());
+		}
+		bool remove_event(std::string event, int d, int m, int y)
+		{
 			try {
 				T date = T(y, m, d);
 				// check if date is in calender
@@ -161,8 +167,7 @@ template <class T=Date>
 		typename std::map<T, std::vector<std::string>>::iterator it;
 		for(it=entries.begin(); it!=entries.end(); ++it) {
 			T date = it->first;
-			//printf("%d-%d-%d\n", date.year(), date.month(), date.day());
-			if(date >= current_date) {
+			if(date > current_date) {
 				std::vector<std::string> v = it->second;
 				for(size_t i=0; i<v.size(); ++i) {
 					oss << date << " : " << v[i] << std::endl;
