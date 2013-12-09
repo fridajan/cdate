@@ -8,7 +8,7 @@ namespace haunted_house
 {
   class Item {
 
-    private:
+    protected:
       std::string m_name;
       int m_magic_power;
       int m_weight;
@@ -16,17 +16,15 @@ namespace haunted_house
       int m_price;
   
     public:
-      virtual std::string name() const =0;
-
-      virtual std::string description() const =0;
-
+      //~Item(){};
+      virtual std::string name() =0;
+      virtual std::string description() =0;
       virtual int magic_power() const =0;
-
       virtual int weight() const =0;
-
       virtual int volume() const =0;
-
       virtual int price() const =0;
+
+      //Some kind of use function
 
   };
 }
