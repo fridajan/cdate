@@ -1,4 +1,7 @@
-Characters:
+Characters - 
+		Alive - Human
+		Dead - 	Ghost (TODO Vampire)
+		
 
 
 Rooms:
