@@ -1,4 +1,6 @@
 #include "human.h"
+#include <iostream>
+using namespace std;
 
 namespace haunted_house
 {
@@ -14,13 +16,15 @@ namespace haunted_house
 		m_item_capacity = 5;
 	}
 
-	Human::Human(const Human &h){
-		m_name = h.m_name;
-		m_item_capacity = h.m_item_capacity;
+	Human::Human(const Character& h){
+		m_name = h.name();
+		m_item_capacity = 5;
+		m_life = h.life();
 	}
-	Human& Human::operator=(const Human &h){
-		m_name = h.m_name;
-		m_item_capacity = h.m_item_capacity;
+
+	Human& Human::operator=(const Character& h){
+		m_name = h.name();
+		m_item_capacity = 5;
 		return *this;
 	}
 
@@ -37,14 +41,15 @@ namespace haunted_house
 	};
 
 	bool Human::fight(Character& c){
+		srand(time(NULL)); //Generate random
 		if(c.life() > 0){ //Human or Wizard
 			//No fight needed we can talk!
 			return true;
 		}else{
 			int i = 0;
-			while(i < 100){ //change to fight until win or loose
+			while(i < 10){ //change to fight until win or loose
 				int rate = rand() % 100 + 1;
-				cout << rate << " rate" << endl;
+				cout << rate << " Human" << endl;
 				if(rate > 50){
 					this->change_life(rate % 50);
 					c.change_life(rate % 50);
@@ -54,14 +59,17 @@ namespace haunted_house
 				}
 				if(c.life() > 0){
 					//Todo transform object to human
+					//c = new Human();
 					return true;
 				}else if(this->life() < 0){
 					//Transform you to dead
 					return false;
 				}
 				++i;
+				c.fight(*this);
 			}
 			return true;
 		}
+
 	};
 }

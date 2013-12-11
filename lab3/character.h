@@ -17,6 +17,9 @@ namespace haunted_house
 			int m_life;
 
 		public:
+/*			Character(const Character& c){
+
+			}*/
 			~Character(){};
 
 			string name();
