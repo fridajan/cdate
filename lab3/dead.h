@@ -5,6 +5,7 @@
 #include <map>
 #include "item.h"
 #include "character.h"
+#include "alive.h"
 #include "pill.h"
 
 using namespace std;

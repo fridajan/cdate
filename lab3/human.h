@@ -1,24 +1,28 @@
 #ifndef HUMAN_H_
 #define HUMAN_H_
 #include "alive.h"
+#include "dead.h"
+#include "ghost.h"
 #include "pill.h"
 #include "item.h"
 #include <string>
 
-#include <iostream>
+
 #include <map>
 #include <stdlib.h>     /* srand, rand */
+
 
 using namespace std;
 namespace haunted_house
 {
+	class Ghost;
 	class Human: public Alive{
 		public:
 			Human();
 			Human(string name);
 			~Human(){};
-			Human(const Human &h);	//TODO How to copy and assign??
-			Human& operator=(const Human &h);
+			Human(const Character& d);	//TODO How to copy and assign??
+			Human& operator=(const Character& h);
 
 			virtual bool action(){return false;}; //aktörens tur att agera
 			virtual bool go(int direction){return false;};
