@@ -23,7 +23,7 @@ namespace haunted_house
 
   public:
     friend class Room;
-    friend class Basement;
+    friend class Garden;
 
     enum Direction { north, east, south, west, northeast, northwest, southeast, southwest, up, down };
 
@@ -44,6 +44,8 @@ namespace haunted_house
     virtual bool enter(Character& c);
 
     virtual bool leave(Character& c);
+
+    virtual vector<std::string> items();
 
     virtual bool pick_up(std::string it);
 

@@ -3,6 +3,7 @@
 
 #include "place.h"
 #include "room.h"
+#include "garden.h"
 #include "item.h"
 #include <stdexcept>
 #include <string>
@@ -24,8 +25,11 @@ namespace haunted_house
 
     void printHouse();
 
+    static const std::string directions[];
+
   };
 }
 
 
 #endif /* HOUSE_H_ */
+

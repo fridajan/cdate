@@ -18,7 +18,7 @@ namespace haunted_house
 
   Place& Place::getNeighbour(int direction) 
   {
-    if(m_neighbours.find(direction) == m_neighbours.end()) {
+    if(m_neighbours.find(direction) != m_neighbours.end()) {
       return *m_neighbours[direction];
     } else {
       return *this;
@@ -28,6 +28,7 @@ namespace haunted_house
   void Place::setNeighbour(int direction, Place* place)
   {
     m_neighbours[direction] = place;
+    m_directions.push_back(direction);
   }
 
   std::string Place::description() 
@@ -55,6 +56,15 @@ namespace haunted_house
   {
     return true;
   }
+
+ vector<std::string> Place::items()
+ {
+    vector<std::string> v;
+    for(std::map<std::string, Item*>::iterator it = m_items.begin(); it != m_items.end(); ++it) {
+      v.push_back(it->first);
+    }
+    return v;
+ }
 
   bool Place::pick_up(std::string it) 
   {

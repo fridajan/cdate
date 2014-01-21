@@ -1,5 +1,5 @@
-#ifndef ROOM_H_
-#define ROOM_H_
+#ifndef GARDEN_H_
+#define GARDEN_H_
 
 #include "place.h"
 #include <stdexcept>
@@ -8,24 +8,24 @@
 
 namespace haunted_house 
 {
-  class Room : public Place {
+  class Garden : public Place {
 
   public:
 
-    Room(std::string description)
+    Garden(std::string description)
     {
-      m_type = "Room";
+      m_type = "Garden";
       m_description = description;
     }
 
-    Room()
+    Garden()
     {
     }
 
-    ~Room() { };
+    ~Garden() { };
 
   };
 }
 
 
-#endif /* ROOM_H_ */
+#endif /* GARDEN_H_ */
