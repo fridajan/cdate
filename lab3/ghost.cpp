@@ -1,4 +1,5 @@
 #include "ghost.h"
+#include "character.h"
 #include <iostream>
 using namespace std;
 namespace haunted_house
@@ -14,7 +15,7 @@ namespace haunted_house
 		m_life = -100;
 	}
 
-	Ghost::Ghost(const Character& h):Dead(h){
+	Ghost::Ghost(const Character& h){
 		m_name = h.name();
 		m_item_capacity = 1;
 		m_life = h.life();

@@ -5,7 +5,7 @@ using namespace std;
 
 namespace haunted_house
 {
-	string Character::name(){
+	string Character::name() const {
 		return m_name;
 	}
 
@@ -30,7 +30,7 @@ namespace haunted_house
 		return false;
 	};
 
-	int Character::life(){
+	int Character::life() const {
 		return m_life;
 	};
 	void Character::change_life(int change){

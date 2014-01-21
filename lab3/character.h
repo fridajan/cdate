@@ -22,12 +22,12 @@ namespace haunted_house
 			}*/
 			~Character(){};
 
-			string name();
+			string name() const;
 			int container_size();
 			int container_capacity();
 			bool pick_up(Item& item);
 			bool drop(Item& item);
-			int life();
+			int life() const;
 			void change_life(int change);
 
 			virtual bool action() = 0; //aktörens tur att agera
