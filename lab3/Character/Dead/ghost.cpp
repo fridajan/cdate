@@ -1,5 +1,4 @@
 #include "ghost.h"
-#include "character.h"
 #include <iostream>
 using namespace std;
 namespace haunted_house

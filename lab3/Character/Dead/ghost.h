@@ -1,9 +1,7 @@
 #ifndef GHOST_H_
 #define GHOST_H_
 #include "dead.h"
-#include "human.h"
-#include "alive.h"
-#include "pill.h"
+#include "../../pill.h"
 
 namespace haunted_house
 {
