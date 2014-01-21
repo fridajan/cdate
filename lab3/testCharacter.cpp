@@ -1,8 +1,9 @@
-#include "human.h"
-#include "ghost.h"
-#include "character.h"
-#include "item.h"
-#include "pill.h"
+#include "game.h"
+//#include "human.h"
+//#include "ghost.h"
+//#include "character.h"
+//#include "item.h"
+//#include "pill.h"
 
 #include <vector>
 #include <string.h>
@@ -12,7 +13,7 @@
 using namespace std;
 using namespace haunted_house;
 int main(){
-	Human gunilla("Gunilla");
+	/*Human gunilla("Gunilla");
 	Human juan;
 	Ghost casper;
 	Ghost laban("Laban");
@@ -53,6 +54,11 @@ int main(){
 		cout << "Juan Won! and gained life: " << juan.life()<< endl;
 	}else{
 		cout << "Juan Lost!" << endl;
-	}
+	}*/
+
+
+	Game g;
+	g.play();
+
 	return 0;
 }

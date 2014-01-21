@@ -13,6 +13,7 @@ namespace haunted_house
 {
   class Place {
   private:
+    std::string m_type;
     std::string m_description;
     std::vector<int> m_directions;
     std::vector<Character*> m_characters;
@@ -21,6 +22,8 @@ namespace haunted_house
     bool locked;
 
   public:
+    friend class Room;
+    friend class Basement;
 
     enum Direction { north, east, south, west, northeast, northwest, southeast, southwest, up, down };
 
@@ -32,7 +35,11 @@ namespace haunted_house
 
     virtual Place& getNeighbour(int direction);
 
+    virtual void setNeighbour(int direction, Place* place);
+
     virtual std::string description();
+
+    virtual std::string type();
 
     virtual bool enter(Character& c);
 

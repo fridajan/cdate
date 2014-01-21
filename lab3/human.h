@@ -27,7 +27,7 @@ namespace haunted_house
 			virtual bool action(){return false;}; //aktörens tur att agera
 			virtual bool go(int direction){return false;};
 			virtual bool eat(Pill& pill);
-			virtual bool fight(Character& c);
+			//virtual bool fight(Character& c);
 	};
 }
 #endif

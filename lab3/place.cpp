@@ -2,11 +2,9 @@
 
 namespace haunted_house 
 {
-  
+
   Place::Place() 
   {
-    //m_description = description;
-    //m_directions = directions;
   }
 
   Place::~Place() 
@@ -27,9 +25,19 @@ namespace haunted_house
     }
   }
 
+  void Place::setNeighbour(int direction, Place* place)
+  {
+    m_neighbours[direction] = place;
+  }
+
   std::string Place::description() 
   {
     return m_description;
+  }
+
+  std::string Place::type() 
+  {
+    return m_type;
   }
 
   bool Place::enter(Character& c) 

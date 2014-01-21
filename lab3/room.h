@@ -12,10 +12,15 @@ namespace haunted_house
 
   public:
 
+    Room(std::string description)
+    {
+      m_type = "Room";
+      m_description = description;
+    }
+
     Room()
     {
-      std::vector<int> directions = { Direction::north, Direction::south, Direction::east, Direction::west };
-      //Place(description, directions);
+      //std::vector<int> directions = { Direction::north, Direction::south, Direction::east, Direction::west };
     }
 
     ~Room() { };
