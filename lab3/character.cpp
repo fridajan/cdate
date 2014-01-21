@@ -5,15 +5,15 @@ using namespace std;
 
 namespace haunted_house
 {
-	string Character::name(){
+	string Character::name() const{
 		return m_name;
 	}
 
-	int Character::container_size(){
+	int Character::container_size() const{
 		return m_item_container.size();
 	};
 
-	int Character::container_capacity(){
+	int Character::container_capacity() const{
 		return m_item_capacity;
 	};
 	
@@ -30,10 +30,17 @@ namespace haunted_house
 		return false;
 	};
 
-	int Character::life(){
+	signed int Character::life() const{
 		return m_life;
 	};
 	void Character::change_life(int change){
 		m_life += change;
+	};
+
+	string Character::type() const{
+		return m_type;
+	};
+	void Character::change_type(string type){
+		m_type = type;
 	};
 }
