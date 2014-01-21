@@ -3,9 +3,9 @@
 
 #include <string>
 #include <map>
-#include "../../item.h"
+#include "../../Items/item.h"
 #include "../character.h"
-#include "../../pill.h"
+#include "../../Items/pill.h"
 
 using namespace std;
 namespace haunted_house

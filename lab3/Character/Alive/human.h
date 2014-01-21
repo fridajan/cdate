@@ -1,8 +1,8 @@
 #ifndef HUMAN_H_
 #define HUMAN_H_
 #include "alive.h"
-#include "../../pill.h"
-#include "../../item.h"
+#include "../../Items/pill.h"
+#include "../../Items/item.h"
 #include <string>
 
 

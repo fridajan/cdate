@@ -2,7 +2,7 @@
 #define PLACE_H_
 
 #include "Character/character.h"
-#include "item.h"
+#include "Items/item.h"
 #include <stdexcept>
 #include <string>
 #include <vector>
