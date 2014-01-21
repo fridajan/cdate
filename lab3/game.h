@@ -1,7 +1,9 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include "character.h"
+#include "Character/character.h"
+#include "Character/Alive/human.h"
+#include "Character/Dead/ghost.h"
 
 //#include "room.h"
 #include <iostream>

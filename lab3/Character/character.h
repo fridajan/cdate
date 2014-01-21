@@ -3,8 +3,8 @@
 
 #include <string>
 #include <map>
-#include "item.h"
-#include "pill.h"
+#include "../item.h"
+#include "../pill.h"
 
 using namespace std;
 namespace haunted_house

@@ -1,6 +1,4 @@
 #include "game.h"
-#include "human.h"
-#include "ghost.h"
 #include <string>
 #include <climits>
 #include <cmath>
