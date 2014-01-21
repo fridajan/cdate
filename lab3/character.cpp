@@ -5,11 +5,7 @@ using namespace std;
 
 namespace haunted_house
 {
-<<<<<<< HEAD
-	string Character::name() const {
-=======
 	string Character::name() const{
->>>>>>> 8b329fc8908f405c73f3e21fc1e3579144809b20
 		return m_name;
 	}
 
@@ -34,11 +30,7 @@ namespace haunted_house
 		return false;
 	};
 
-<<<<<<< HEAD
-	int Character::life() const {
-=======
 	signed int Character::life() const{
->>>>>>> 8b329fc8908f405c73f3e21fc1e3579144809b20
 		return m_life;
 	};
 	void Character::change_life(int change){

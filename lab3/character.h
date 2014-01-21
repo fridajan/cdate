@@ -24,15 +24,7 @@ namespace haunted_house
 			~Character(){};
 
 			string name() const;
-<<<<<<< HEAD
-			int container_size();
-			int container_capacity();
-			bool pick_up(Item& item);
-			bool drop(Item& item);
-			int life() const;
-			void change_life(int change);
-=======
-			
+						
 			signed int life() const;
 			void change_life(int change);
 			
@@ -43,7 +35,6 @@ namespace haunted_house
 			int container_capacity() const;
 			bool pick_up(Item& item);
 			bool drop(Item& item);
->>>>>>> 8b329fc8908f405c73f3e21fc1e3579144809b20
 
 			virtual bool action() = 0; //aktörens tur att agera
 			virtual bool go(int direction = 0) = 0;
