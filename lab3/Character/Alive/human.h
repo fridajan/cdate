@@ -17,7 +17,7 @@ namespace haunted_house
 	class Human: public Alive{
 		public:
 			Human();
-			Human(string name);
+			Human(string name, Place *location);
 			~Human(){};
 			Human(const Character& d);	//TODO How to copy and assign??
 			Human& operator=(const Character& h);

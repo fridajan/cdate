@@ -35,4 +35,11 @@ namespace haunted_house
 		}
 
 	};
+
+	bool Alive::action(){
+		Place *locat = this->location();
+		vector<std::string> items = locat->items();
+		if(items.size() > 0) this->change_life(10000);
+		return true;
+	};
 }

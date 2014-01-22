@@ -42,4 +42,10 @@ namespace haunted_house
 	void Character::change_type(string type){
 		m_type = type;
 	};
+	Place* Character::location(){
+		return m_location;
+	}
+	void Character::change_location(Place *location){
+		m_location = location;
+	}
 }

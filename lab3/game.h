@@ -4,6 +4,9 @@
 #include "Character/character.h"
 #include "Character/Alive/human.h"
 #include "Character/Dead/ghost.h"
+#include "place.h"
+#include "room.h"
+#include "garden.h"
 
 //#include "room.h"
 #include <iostream>
@@ -16,7 +19,7 @@ namespace haunted_house
 		bool processCommand();
 
 		std::vector<Character*> characters;
-		//std::vector<Room*> board;
+		std::vector<Place*> places;
 
 		public:
 			Game();
@@ -24,7 +27,9 @@ namespace haunted_house
 
 			void play();
 			string whoIsTheWinner();
+			
 			void setup_characters();
+			void setup_game_board();
 
 	};
 }
