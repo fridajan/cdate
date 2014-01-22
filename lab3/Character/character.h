@@ -4,6 +4,7 @@
 class Place;
 #include <string>
 #include <map>
+#include <iostream>
 #include "../place.h"
 #include "../Items/item.h"
 #include "../Items/pill.h"
@@ -39,9 +40,10 @@ namespace haunted_house
 			bool pick_up(Item& item);
 			bool drop(Item& item);
 
+			bool go(int direction);
+			bool eat(Pill& pill);
+
 			virtual bool action() = 0; //aktörens tur att agera
-			virtual bool go(int direction = 0) = 0;
-			virtual bool eat(Pill& pill) = 0;
 			virtual bool fight(Character& c) = 0;
 	};
 }	

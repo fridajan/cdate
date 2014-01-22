@@ -17,12 +17,11 @@ namespace haunted_house
 	class Human: public Alive{
 		public:
 			Human();
-			Human(string name, Place *location);
+			Human(string name);
 			~Human(){};
 			Human(const Character& d);	//TODO How to copy and assign??
 			Human& operator=(const Character& h);
 
-			virtual bool action(){return false;}; //aktörens tur att agera
 			virtual bool go(int direction){return false;};
 			virtual bool eat(Pill& pill);
 			//virtual bool fight(Character& c);

@@ -14,18 +14,20 @@ namespace haunted_house
 	};
 
 	void Game::setup(){
-		//Setup characters
 		setup_characters();
-		//Setup Board
 		setup_game_board();
+		setup_characters_in_room();
+		
+		printf("Setup complete\n");
+	};
 
+	void Game::setup_characters_in_room(){
 		srand(time(NULL)); //Generate random
 		for(int i = 0; i < (int)characters.size(); ++i){
 			int random_room = rand() % (int)places.size(); 
 			characters[i]->change_location(places[random_room]);
-			//places[random_room]->enter(characters[i]); //TODO add the characters to the room too!
+			places[random_room]->enter(characters[i]); //TODO add the characters to the room too!
 		}
-		printf("Setup complete\n");
 	};
 
 	void Game::setup_game_board(){
@@ -38,9 +40,9 @@ namespace haunted_house
 
 	  	// Create items
 	  	Item *it1 = new Pill();
-	  	p4->drop(*it1);
 
 	  	// Drop items in rooms
+	  	p4->drop(*it1);
 
 	  	// Connect rooms
 	  	p1->setNeighbour(Place::north, p2);
@@ -63,45 +65,42 @@ namespace haunted_house
 	};
 
 	void Game::setup_characters(){
-		Human *h = new Human("Meg", NULL);
+		Human *h = new Human("Meg");
 		Ghost *g = new Ghost("Bono");
-		Human *g2 = new Human("Bob", NULL);
+		Human *g2 = new Human("Bob");
 
 		characters.push_back(h);
 		characters.push_back(g);
 		characters.push_back(g2);
 	};
 	
+	//Checks if we reach the goal of the game
 	bool Game::finished(){
 		//Setup finish goals
 		for(int i = 0; i < (int)characters.size(); ++i){
-			std::cout << characters[i]->life() << std::endl;
+			//std::cout << characters[i]->life() << std::endl;
 			if(characters[i]->type() == "Human" && characters[i]->life() <= 0) return true;
 			if(characters[i]->type() == "Ghost" && characters[i]->life() >= 0) return true;
 		}
 		return false;
 	};
 
+	//Game loop
 	void Game::play(){
 		printf("In game loop\n");
 		bool quit = false;
-		//while (!finished() || quit) {
-       		/*Command command = parser.getCommand();
-            quit = processCommand(command);*/
+		while (!finished() && !quit) {
             for(int i = 0; i < (int)characters.size(); ++i){	
-				//characters[i]->fight(*characters[(i+1)%characters.size()]);
 				characters[i]->action();
-				std::cout << i<<characters[i]->name() << std::endl;
 			}
-		//}
+			quit = true;
+		}
         std::cout << whoIsTheWinner() << " is the winner!" << std::endl;
-                printf("Play loop complete\n");
+        printf("Play loop complete\n");
 	};
 
 	bool Game::processCommand(){
-		bool quit = false;
-		//If command is quit, change to true
-		return quit;
+		return false;
 	};
 
 	string Game::whoIsTheWinner(){

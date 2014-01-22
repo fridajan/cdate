@@ -48,4 +48,21 @@ namespace haunted_house
 	void Character::change_location(Place *location){
 		m_location = location;
 	}
+
+	bool Character::go(int direction){
+		Place* current_room = this->location();
+		Place* next_room = current_room->getNeighbour(direction);
+
+		if(current_room != next_room){
+			printf("WE CHANGED ROOM\n");
+			if(next_room->enter(this) && current_room->leave(this)){
+				this->change_location(next_room);
+				return true;
+			}
+		}
+		return false;
+	};
+	bool Character::eat(Pill& pill){
+		return false;
+	};
 }

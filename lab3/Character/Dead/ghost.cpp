@@ -23,11 +23,6 @@ namespace haunted_house
 		//Todo type
 	}
 
-	bool Ghost::action(){
-		cout << name() << endl;
-		return true;
-	}
-
 	bool Ghost::steal(){
 		return false;
 	}

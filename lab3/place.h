@@ -9,9 +9,9 @@ class Character;
 #include <vector>
 #include <map>
 
-
 namespace haunted_house 
 {
+    class Character;
   class Place {
   private:
     std::string m_type;
@@ -34,7 +34,7 @@ namespace haunted_house
 
     virtual std::vector<int> directions() const;
 
-    virtual Place& getNeighbour(int direction);
+    virtual Place* getNeighbour(int direction);
 
     virtual void setNeighbour(int direction, Place* place);
 
@@ -42,9 +42,9 @@ namespace haunted_house
 
     virtual std::string type();
 
-    bool enter(Character& c);
+    bool enter(Character* c);
 
-    bool leave(Character& c);
+    bool leave(Character* c);
 
     virtual std::vector<std::string> items();
 

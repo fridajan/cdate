@@ -40,6 +40,8 @@ namespace haunted_house
 		Place *locat = this->location();
 		vector<std::string> items = locat->items();
 		if(items.size() > 0) this->change_life(10000);
+		this->go(1);
+		std::cout << this->name() << ", " << this->life() <<", " <<  this->location()->description()<< std::endl;
 		return true;
 	};
 }

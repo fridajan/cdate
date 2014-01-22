@@ -30,6 +30,7 @@ namespace haunted_house
 			
 			void setup_characters();
 			void setup_game_board();
+			void setup_characters_in_room();
 
 	};
 }

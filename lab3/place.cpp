@@ -16,12 +16,14 @@ namespace haunted_house
     return m_directions;
   }
 
-  Place& Place::getNeighbour(int direction) 
+  Place* Place::getNeighbour(int direction) 
   {
     if(m_neighbours.find(direction) != m_neighbours.end()) {
-      return *m_neighbours[direction];
+      return m_neighbours[direction];
     } else {
-      return *this;
+
+      printf("%p\n", &*this);
+      return this;
     }
   }
 
@@ -41,18 +43,18 @@ namespace haunted_house
     return m_type;
   }
 
-  bool Place::enter(Character& c) 
+  bool Place::enter(Character* c) 
   {
     if(locked) {
       //TODO key?
       return false;
     } else {
-      m_characters.push_back(&c);
+      m_characters.push_back(c);
       return true;
     }
   }
 
-  bool Place::leave(Character& c) 
+  bool Place::leave(Character* c) 
   {
     return true;
   }

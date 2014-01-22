@@ -33,4 +33,12 @@ namespace haunted_house
 			return true;
 		}
 	};
+
+	bool Dead::action(){
+		Place *locat = this->location();
+		vector<std::string> items = locat->items();
+		if(items.size() > 0) this->change_life(-10000);
+		std::cout << this->name() << ", " << this->life() <<", " <<  locat->description()<< std::endl;
+		return true;
+	};
 }

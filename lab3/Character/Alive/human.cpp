@@ -11,12 +11,11 @@ namespace haunted_house
 		m_type = "Human";
 	}
 
-	Human::Human(std::string nm, Place* location){
+	Human::Human(std::string nm){
 		m_name = nm;
 		m_life = 100;
 		m_item_capacity = 5;
 		m_type = "Human";
-		m_location = location;
 	}
 
 	Human::Human(const Character& h){
