@@ -42,11 +42,11 @@ namespace haunted_house
 
     virtual std::string type();
 
-    virtual bool enter(Character& c);
+    bool enter(Character& c);
 
-    virtual bool leave(Character& c);
+    bool leave(Character& c);
 
-    virtual vector<std::string> items();
+    virtual std::vector<std::string> items();
 
     virtual bool pick_up(std::string it);
 
