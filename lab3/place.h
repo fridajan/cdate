@@ -1,6 +1,7 @@
 #ifndef PLACE_H_
 #define PLACE_H_
 
+class Character;
 #include "Character/character.h"
 #include "Items/item.h"
 #include <stdexcept>

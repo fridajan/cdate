@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include "../place.h"
 #include "../Items/item.h"
 #include "../Items/pill.h"
 
@@ -16,11 +17,9 @@ namespace haunted_house
 			map<string, Item*> m_item_container;
 			signed int m_life;
 			string m_type;
+			Place* m_location;
 
 		public:
-/*			Character(const Character& c){
-
-			}*/
 			~Character(){};
 
 			string name() const;
@@ -30,6 +29,9 @@ namespace haunted_house
 			
 			string type() const;
 			void change_type(string type);
+
+			Place* location();
+			void change_location(Place *location);
 						
 			int container_size() const;
 			int container_capacity() const;
