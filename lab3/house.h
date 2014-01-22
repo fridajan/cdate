@@ -4,7 +4,7 @@
 #include "place.h"
 #include "room.h"
 #include "garden.h"
-#include "item.h"
+#include "Items/item.h"
 #include <stdexcept>
 #include <string>
 #include <vector>

@@ -5,7 +5,10 @@ Characters -
 
 
 Rooms:
+	Room
+	Garden
 
 
 Items:
 		Pill
+		Key
